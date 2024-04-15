@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CargaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\UserController;
 use App\Models\Rol;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Route;
 
 
@@ -37,6 +37,18 @@ route::middleware(['auth', 'verified'])->group(function () {
 
     // Rutas referentes a la gestion cliente
     route::get('/clientes', [ClienteController::class, 'index'])->name('cliente.index');
+    route::get('/clientes/create', [ClienteController::class, 'create'])->name('cliente.create');
+    route::post('/clientes/create/store', [ClienteController::class, 'store'])->name('cliente.store');
+    route::delete('/clientes/destroy/{id}', [ClienteController::class, 'destroy'])->name('cliente.destroy');
+
+
+    // Rutas referentes a la gestion de cargas
+    route::get('/cargas', [CargaController::class, 'index'])->name('carga.index');
+    route::get('/cargas/create', [CargaController::class, 'create'])->name('carga.create');
+    route::get('/cargas/create/edit/{id}', [CargaController::class, 'edit'])->name('carga.edit');
+    route::post('/cargas/create/store', [CargaController::class, 'store'])->name('carga.store');
+    route::put('/cargas/create/update/{id}', [CargaController::class, 'update'])->name('carga.update');
+    route::delete('/cargas/destroy/{id}', [CargaController::class, 'destroy'])->name('carga.destroy');
 
     
 });

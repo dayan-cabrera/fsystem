@@ -354,7 +354,7 @@ return [
                 ],
                 [
                     'text' => 'Gestión de cargas',
-                    'url' => '#'
+                    'url' => '/cargas'
                 ]
             ],
         ],

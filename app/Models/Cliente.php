@@ -8,10 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Cliente extends Model
 {
     use HasFactory;
-    protected $table = 'clientes';
 
-    protected $casts = [
-        'prior' => 'boolean',
-        'ent' => 'boolean',
+    protected $fillable = [
+        'nombre',
+        'pais',
+        'fax',
+        'email',
+        'prioridad',
+        'telefono',
+        'anos',
+        'archivado',
+        'entidad',
     ];
 }

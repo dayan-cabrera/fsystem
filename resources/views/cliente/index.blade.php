@@ -1,12 +1,11 @@
 <x-layout>
     <div class="text-center p-4 add">
         <h1>Gestión de clientes</h1>
-        <form action="" class="">
-            <button class="btn btn-success" style="width: 50%;">Agregar</button>
-
+        <form action="{{route('cliente.create')}}" method="get">
+            <button type="submit" class="btn btn-success" style="width: 50%;">Agregar</button>
         </form>
     </div>
-    @if (count($clientes) != 0)
+    @if (count($clientes) == 0)
     <p>Clientes sin registrar</p>
     @else
 
@@ -22,7 +21,6 @@
                 <th scope="col">Pais</th>
                 <th scope="col">Fax</th>
                 <th scope="col">Teléfono</th>
-                <th scope="col">Empresa</th>
                 <th scope="col">Prioridad</th>
                 <th scope="col">Archivado</th>
                 <th scope="col">Entidad</th>
@@ -32,16 +30,23 @@
         <tbody>
             @foreach ($clientes as $cliente )
             <tr>
-                <td class="align-middle" scope="row" style="width: 35%;">{{$loop->index+1}}</td>
-                <td class="align-middle" style="width: 35%;"></td>
-                <td class="align-middle" style="width: 35%;"></td>
-                <td id="btns" class="align-middle" style="width: 35%; padding: 1rem;">
+                <td class="align-middle" scope="row" >{{$loop->index+1}}</td>
+                <td class="align-middle">{{$cliente->nombre}}</td>
+                <td class="align-middle">{{$cliente->anos}}</td>
+                <td class="align-middle">{{$cliente->email}}</td>
+                <td class="align-middle">{{$cliente->pais}}</td>
+                <td class="align-middle">{{$cliente->fax}}</td>
+                <td class="align-middle">{{$cliente->telefono}}</td>
+                <td class="align-middle">{{($cliente->prioridad != 0) ? 'Sí' : 'No'}}</td>
+                <td class="align-middle">{{($cliente->archivado != 0) ? 'Sí' : 'No'}}</td>
+                <td class="align-middle">{{($cliente->entidad != 0) ? 'Sí' : 'No'}}</td>
+                <td id="btns" class="align-middle" style=" padding: 1rem;">
                     <div class="d-flex">
                         
                         <form action="" method="get">
-                            <button style="margin: 4px;" class="btn btn-sm btn-info">Rol</button>
+                            <button style="margin: 4px;" class="btn btn-sm btn-info">Editar</button>
                         </form>
-                        <form action="" method="post">
+                        <form action="{{route('cliente.destroy', $cliente->id)}}" method="post">
                             @csrf
                             @method('delete')
                             <button type="submit" style="margin: 4px;" class="btn btn-sm btn-danger">Eliminar</button>
