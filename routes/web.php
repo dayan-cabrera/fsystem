@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CargaController;
 use App\Http\Controllers\ClienteController;
@@ -50,5 +51,14 @@ route::middleware(['auth', 'verified'])->group(function () {
     route::put('/cargas/create/update/{id}', [CargaController::class, 'update'])->name('carga.update');
     route::delete('/cargas/destroy/{id}', [CargaController::class, 'destroy'])->name('carga.destroy');
 
+    // Rutas referentes a la gestion de cargas
+    route::get('/almacenes', [AlmacenController::class, 'index'])->name('almacen.index');
+    route::get('/almacenes/create', [AlmacenController::class, 'create'])->name('almacen.create');
+    route::get('/almacenes/create/edit/{id}', [AlmacenController::class, 'edit'])->name('almacen.edit');
+    route::post('/almacenes/create/store', [AlmacenController::class, 'store'])->name('almacen.store');
+    route::put('/almacenes/create/update/{id}', [AlmacenController::class, 'update'])->name('almacen.update');
+    route::delete('/almacenes/destroy/{id}', [AlmacenController::class, 'destroy'])->name('almacen.destroy');
+
+    
     
 });

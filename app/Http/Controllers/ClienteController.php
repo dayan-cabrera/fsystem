@@ -10,6 +10,7 @@ class ClienteController extends Controller
 {
     public function index()
     {
+        // getCliente
         $clientes = Cliente::orderBy('nombre')->get();
         return view('cliente.index', compact('clientes'));
     }
@@ -20,6 +21,8 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
+        // insertarCliente
+
         $data = $request->validate([
             'nombre' => 'required|string|max:255',
             'pais' => 'required|string|max:255',
@@ -38,6 +41,7 @@ class ClienteController extends Controller
 
     public function destroy($id)
     {
+        // eliminarCliente
         Cliente::destroy($id);
         return redirect()->route('cliente.index');
     }

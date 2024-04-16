@@ -336,7 +336,7 @@ return [
                     'submenu' => [
                         [
                             'text' => 'Gestionar almacén',
-                            'url' => '#',
+                            'url' => '/almacenes',
                         ], 
                         [
                             'text' => 'Mantenimiento',
