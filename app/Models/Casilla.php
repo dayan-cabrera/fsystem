@@ -15,4 +15,13 @@ class Casilla extends Model
         'ocupada',
         'fecha_mant'
     ];
+
+    public function piso()
+    {
+        return $this->belongsTo(Piso::class);
+    }
+    public function cargas()
+    {
+        return $this->hasMany(Carga::class);
+    }
 }

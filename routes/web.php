@@ -58,6 +58,8 @@ route::middleware(['auth', 'verified'])->group(function () {
     route::post('/almacenes/create/store', [AlmacenController::class, 'store'])->name('almacen.store');
     route::put('/almacenes/create/update/{id}', [AlmacenController::class, 'update'])->name('almacen.update');
     route::delete('/almacenes/destroy/{id}', [AlmacenController::class, 'destroy'])->name('almacen.destroy');
-    route::patch('/almacenes/mantenimiento/{id}', [AlmacenController::class, 'ponerEnMantenimiento'])->name('almacen.p_mant');
+    route::patch('/almacenes/poner-mantenimiento/{id}', [AlmacenController::class, 'ponerEnMantenimiento'])->name('almacen.p_mant');
     route::patch('/almacenes/quitar-mantenimiento/{id}', [AlmacenController::class, 'quitarDeMantenimiento'])->name('almacen.q_mant');
+    route::get('/almacenes/mantenimiento', [AlmacenController::class, 'mantIndex'])->name('mant.index');
+    route::get('/almacenes/mantenimiento/{id}', [AlmacenController::class, 'mantEdit'])->name('mant.edit');
 });

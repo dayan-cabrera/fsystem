@@ -312,7 +312,7 @@ return [
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
-        
+
         ['header' => 'Menú'],
         [
             'text' => 'Control de usuarios',
@@ -337,11 +337,11 @@ return [
                         [
                             'text' => 'Gestionar almacén',
                             'url' => '/almacenes',
-                        ], 
+                        ],
                         [
                             'text' => 'Mantenimiento',
-                            'url' => '#',
-                        ], 
+                            'url' => '/almacenes/mantenimiento',
+                        ],
                     ]
                 ],
                 [
@@ -384,8 +384,8 @@ return [
                 ],
             ],
         ],
-       
-       
+
+
     ],
 
     /*

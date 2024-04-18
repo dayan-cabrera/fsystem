@@ -14,4 +14,13 @@ class Piso extends Model
         'mant',
         'fecha_mant'
     ];
+
+    public function estante()
+    {
+        return $this->belongsTo(Estante::class);
+    }
+    public function casillas()
+    {
+        return $this->hasMany(Casilla::class);
+    }
 }

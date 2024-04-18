@@ -15,4 +15,9 @@ class Almacen extends Model
         'nombre',
         'fecha_mant'
     ];
+
+    public function estantes()
+    {
+        return $this->hasMany(Estante::class);
+    }
 }

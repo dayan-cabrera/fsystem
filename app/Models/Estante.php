@@ -14,4 +14,13 @@ class Estante extends Model
         'mant',
         'fecha_mant',
     ];
+
+    public function almacen()
+    {
+        return $this->belongsTo(Almacen::class);
+    }
+    public function pisos()
+    {
+        return $this->hasMany(Piso::class);
+    }
 }

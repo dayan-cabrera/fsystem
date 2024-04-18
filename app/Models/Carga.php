@@ -25,4 +25,9 @@ class Carga extends Model
     protected $cats = [
         'fechaexp' => 'string',
     ];
+
+    public function casilla()
+    {
+        return $this->belongsTo(Casilla::class);
+    }
 }

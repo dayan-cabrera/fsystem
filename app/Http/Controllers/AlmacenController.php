@@ -8,6 +8,7 @@ use App\Models\Casilla;
 use App\Models\Empresa;
 use App\Models\Estante;
 use App\Models\Piso;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -24,13 +25,17 @@ class AlmacenController extends Controller
             ->where('almacens.mantorep', false)
             ->get();
 
+        return view('almacen.index', compact('almacenes'));
+    }
+
+    public function mantIndex()
+    {
         $mantenimiento = DB::table('almacens')->join('empresas', 'almacens.id_empresa', '=', 'empresas.id')
             ->select('almacens.id', 'almacens.nombre', 'empresas.nombre as empresa', 'almacens.condrefrigerado', 'almacens.mantorep', 'almacens.fecha_mant')->orderBy('nombre', 'asc')
             ->where('almacens.mantorep', true)
             ->get();
 
-
-        return view('almacen.index', compact('almacenes', 'mantenimiento'));
+        return view('almacen.mantenimiento.index', compact('mantenimiento'));
     }
 
     public function create()
@@ -41,18 +46,21 @@ class AlmacenController extends Controller
 
     public function store(Request $request)
     {
+        try {
+            $data = $request->validate([
+                'id_empresa' => 'required',
+                'condrefrigerado' => 'required',
+                'nombre' => 'required',
+                'mantorep' => 'required',
+                'fecha_mant' => 'required'
+            ]);
 
-        $data = $request->validate([
-            'id_empresa' => 'required',
-            'condrefrigerado' => 'required',
-            'nombre' => 'required',
-            'mantorep' => 'required',
-            'fecha_mant' => 'required'
-        ]);
+            Almacen::create($data);
 
-        Almacen::create($data);
-
-        return redirect()->route('almacen.index')->with('success', 'creado');
+            return redirect()->route('almacen.index')->with('success', 'creado');
+        } catch (ValidationException $e) {
+            return back()->with('error', $e->getMessage());
+        }
     }
 
     public function edit($id)
@@ -65,17 +73,22 @@ class AlmacenController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = $request->validate([
-            'id_empresa' => 'required',
-            'condrefrigerado' => 'required',
-            'nombre' => 'required',
-            'fecha_mant' => 'required'
-        ]);
+        try {
 
-        $almacen = Almacen::findOrFail($id);
-        $almacen->update($data);
+            $data = $request->validate([
+                'id_empresa' => 'required',
+                'condrefrigerado' => 'required',
+                'nombre' => 'required',
+                'fecha_mant' => 'required'
+            ]);
 
-        return redirect()->route('almacen.index')->with('success', 'updated');
+            $almacen = Almacen::findOrFail($id);
+            $almacen->update($data);
+
+            return redirect()->route('almacen.index')->with('success', 'updated');
+        } catch (ValidationException $e) {
+            return back()->with('error', $e->getMessage());
+        }
     }
 
     public function destroy($id)
@@ -88,13 +101,8 @@ class AlmacenController extends Controller
     public function ponerEnMantenimiento($id)
     {
         $listaOcupadas = [];
-        // Obtener almacén por código
+        // Obtener almacén por id
         $almacen = Almacen::where('id', $id)->first();
-        if ($almacen) {
-            // Poner almacén en mantenimiento
-            $almacen->mantorep = true;
-            $almacen->save();
-        }
 
         // Obtener estantes del almacén
         $estantes = Estante::where('id_almacen', $almacen->id)->get();
@@ -107,10 +115,6 @@ class AlmacenController extends Controller
                     if ($casilla->ocupada) {
                         // Añadir a lista de ocupadas
                         $listaOcupadas[] = $casilla;
-
-                        // Modificar casilla
-                        $casilla->mant = true;
-                        $casilla->save();
                     }
                 }
             }
@@ -119,65 +123,91 @@ class AlmacenController extends Controller
         // Reubicación de cargas
         foreach ($listaOcupadas as $casillaOcupada) {
             $carga = Carga::where('id_casilla', $casillaOcupada->id)->first();
-            $this->cargas = $carga->id;
 
+            dd($carga);
             // Buscar un nuevo almacén adecuado para la carga
             $nuevoAlmacen = Almacen::where('mantorep', false)
                 ->where('condrefrigerado', $carga->condrefrig)
                 ->first();
-            if ($nuevoAlmacen) {
-                // Reubicar carga
-                $nuevaCasilla = Casilla::where('id_piso', $nuevoAlmacen->id)
-                    ->where('mant', false)
-                    ->first();
-                if ($nuevaCasilla) {
-                    $carga->id_casilla = $nuevaCasilla->id;
-                    $carga->save();
+            if (!$nuevoAlmacen) return back()->with('error', 'No hay almacen disponible para las características de las cargas');
 
-                    // Eliminar de lista de ocupadas
-                    // $index = array_search($casillaOcupada, $listaOcupadas);
-                    // if ($index !== false) {
-                    //     unset($listaOcupadas[$index]);
-                    // }
-                }
-            }
+            // Reubicar carga
+            $nuevaCasilla = Casilla::where('id_piso', $nuevoAlmacen->id)
+                ->where('mant', false)
+                ->first();
+            if (!$nuevaCasilla) return back()->with('error', 'No hay casillas disponible para las características de las cargas');
+
+            $carga->id_casilla = $nuevaCasilla->id;
+            $carga->save();
+            $this->cargas = $carga->id;
+            $casilla->update(['ocupada' => true]);
+        }
+
+        $almacen->mantorep = true;
+        $almacen->save();
+        DB::table('estantes')->where('id_almacen', $almacen->id)
+            ->update(['mant' => true]);
+
+        foreach ($estantes as $estante) {
+            DB::table('pisos')->where('id_estante', $estante->id)
+                ->update(['mant' => true]);
         }
 
         return back()->with('success', 'ok');
-
-        // Retorno
-        // if (empty($listaOcupadas)) {
-        //     return back()->with('info', 'Todas las cargas ocupadas pudieron ser reubicadas');
-        // }
-        // return back()->with('info', 'Las cargas ocupadas no pudieron ser reubicadas');
     }
 
-    public function quitarDeMantenimiento($id)
+    public function mantEdit($id)
     {
-        // Obtener almacén por código
-        $almacen = Almacen::where('id', $id)->first();
-        if ($almacen && $almacen->mantorep) {
-            // Quitar almacén de mantenimiento
-            $almacen->mantorep = false;
-            $almacen->save();
+        $almacen = Almacen::findOrFail($id);
+        return view('almacen.mantenimiento.edit', compact('almacen'));
+    }
 
-            foreach ($this->cargas as $carga) {
-                // Buscar una casilla disponible en el nuevo almacén
-                $nuevaCasilla = Casilla::where('id_piso', $almacen->id)
-                    ->where('mant', false)
-                    ->first();
+    public function quitarDeMantenimiento(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'fecha_mant' => 'required|date|after_or_equal:' . date('Y-m-d')
+            ]);
 
-                if ($nuevaCasilla) {
-                    // Reubicar carga
-                    $carga->id_casilla = $nuevaCasilla->id;
-                    $carga->save();
+            // Obtener almacén por código
+            $almacen = Almacen::findOrFail($id);
+            if ($almacen && $almacen->mantorep) {
+                // Quitar almacén de mantenimiento
+                $almacen->fecha_mant = $request->fecha_mant;
+                $almacen->mantorep = false;
+                $almacen->save();
+
+                foreach ($this->cargas as $carga) {
+                    if ($carga) {
+                        // Buscar una casilla disponible en el almacén
+                        $nuevaCasilla = Casilla::where('ocupada', false)->first();
+
+                        if ($nuevaCasilla) {
+                            // Reubicar carga
+                            $carga->id_casilla = $nuevaCasilla->id;
+                            $carga->save();
+                        }
+                        $nuevaCasilla->ocupada = true;
+                        $nuevaCasilla->save();
+                    }
                 }
-                $nuevaCasilla->mant = true;
+
+                DB::table('estantes')->where('id_almacen', $almacen->id)
+                    ->update(['mant' => false]);
+
+                $estantes = DB::table('estantes')->where('id_almacen', $almacen->id)->get();
+
+                foreach ($estantes as $estante) {
+                    DB::table('pisos')->where('id_estante', $estante->id)
+                        ->update(['mant' => false]);
+                }
+
+                return redirect()->route('mant.index')->with('success', 'El almacén ha sido quitado de mantenimiento y las cargas han sido reubicadas.');
             }
 
-            return back()->with('success', 'El almacén ha sido quitado de mantenimiento y las cargas han sido reubicadas.');
+            return back()->with('error', 'El almacén no está en mantenimiento o no se encontró.');
+        } catch (ValidationException $e) {
+            return back()->with('error', $e->getMessage());
         }
-
-        return back()->with('error', 'El almacén no está en mantenimiento o no se encontró.');
     }
 }
