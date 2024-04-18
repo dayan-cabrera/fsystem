@@ -14,6 +14,11 @@
         </div>
 
         <div class="input-group">
+            <label for="codigo">Código</label>
+            <input type="text" id="codigo" name="codigo" required>
+        </div>
+
+        <div class="input-group">
             <label for="fechaexp">Fecha Expiración</label>
             <input type="date" id="fechaexp" name="fechaexp" required>
         </div>

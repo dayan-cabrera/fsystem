@@ -15,8 +15,8 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
-                <!-- <th scope="col">Nombre</th> -->
                 <th scope="col">Nombre</th>
+                <th scope="col">Código</th>
                 <th scope="col">Cliente</th>
                 <th scope="col">Compania</th>
                 <th scope="col">Tipo prodoductos</th>
@@ -33,6 +33,7 @@
             <tr>
                 <td class="align-middle" scope="row" >{{$loop->index+1}}</td>
                 <td class="align-middle">{{$carga->nombre}}</td>
+                <td class="align-middle">{{$carga->codigo}}</td>
                 <td class="align-middle">{{$carga->cliente}}</td>
                 <td class="align-middle">{{$carga->compania}}</td>
                 <td class="align-middle">{{$carga->tipo_producto}}</td>

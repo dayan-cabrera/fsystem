@@ -18,6 +18,7 @@ class CargaFactory extends Factory
     {
         return [
             'nombre' => $this->faker->name,
+            'codigo' => $this->faker->text(5),
             'fechaexp' => $this->faker->date(),
             'peso' => $this->faker->randomFloat(2, 1, 100),
             'condrefrig' => $this->faker->boolean,

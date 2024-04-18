@@ -13,7 +13,6 @@ class Almacen extends Model
         'id_empresa',
         'condrefrigerado',
         'nombre',
-        'mantorep',
         'fecha_mant'
     ];
 }

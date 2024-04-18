@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4d317c6bded9d1f9cc048c1a1cd1bfd",
+    "content-hash": "35377ef88d8d94410d19142b2f68f08b",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -2031,16 +2031,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "3.2.3",
+            "version": "3.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "4d599a6e2351d6b6bf21737accdfe1a4ce3fdbb1"
+                "reference": "82c28278c1c8f7b82dcdab25692237f052ffc8d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/4d599a6e2351d6b6bf21737accdfe1a4ce3fdbb1",
-                "reference": "4d599a6e2351d6b6bf21737accdfe1a4ce3fdbb1",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/82c28278c1c8f7b82dcdab25692237f052ffc8d8",
+                "reference": "82c28278c1c8f7b82dcdab25692237f052ffc8d8",
                 "shasum": ""
             },
             "require": {
@@ -2133,7 +2133,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-30T18:22:00+00:00"
+            "time": "2024-04-05T09:58:10+00:00"
         },
         {
             "name": "nette/schema",

@@ -11,6 +11,7 @@ class Carga extends Model
 
     protected $fillable = [
         'nombre',
+        'codigo',
         'fechaexp',
         'id_tipoprod',
         'id_empaquetado',

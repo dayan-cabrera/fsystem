@@ -15,6 +15,11 @@
         </div>
 
         <div class="input-group">
+            <label for="codigo">Có  digo</label>
+            <input type="text" id="codigo" name="codigo" value="{{$carga->codigo}}" required>
+        </div>
+
+        <div class="input-group">
             <label for="fechaexp">Fecha Expedición</label>
             <input type="date" id="fechaexp" name="fechaexp" value="{{$carga->fechaexp}}" required>
         </div>

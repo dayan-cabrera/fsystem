@@ -36,7 +36,7 @@ class CargaController extends Controller
                     ->join('companias', 'cargas.id_compania', '=', 'companias.id')
                     ->join('casillas', 'cargas.id_casilla', '=', 'casillas.id')
                     ->join('clientes', 'cargas.id_cliente', '=', 'clientes.id')
-                    ->select('cargas.id', 'cargas.nombre', 'cargas.fechaexp', 'tipo_productos.tipo as tipo_producto', 'tipo_empaquetados.tipo as empaquetado', 'companias.nombre as compania', 'id_casilla', 'clientes.nombre as cliente', 'cargas.condrefrig', 'cargas.peso')
+                    ->select('cargas.id', 'cargas.nombre', 'cargas.codigo', 'cargas.fechaexp', 'tipo_productos.tipo as tipo_producto', 'tipo_empaquetados.tipo as empaquetado', 'companias.nombre as compania', 'id_casilla', 'clientes.nombre as cliente', 'cargas.condrefrig', 'cargas.peso')
                     ->get();
 
         return view('carga.index', compact('cargas'));
@@ -68,6 +68,7 @@ class CargaController extends Controller
         // insertarCarga
         $data = $request->validate([
             'nombre' => 'required',
+            'codigo' => 'required',
             'fechaexp' => 'required',
             'id_tipoprod' => 'required',
             'id_empaquetado' => 'required',
@@ -88,6 +89,7 @@ class CargaController extends Controller
 
         $data = $request->validate([
             'nombre' => 'required',
+            'codigo' => 'required',
             'fechaexp' => 'required',
             'id_tipoprod' => 'required',
             'id_empaquetado' => 'required',
