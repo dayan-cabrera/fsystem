@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CargaController;
+use App\Http\Controllers\CasillaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EstanteController;
 use App\Http\Controllers\MantenimientoController;
@@ -84,6 +85,17 @@ route::middleware(['auth', 'verified'])->group(function () {
     route::patch('/almacenes/pisos/poner-mantenimiento/{id}', [PisoController::class, 'ponerEnMantenimiento'])->name('piso.p_mant');
     route::patch('/almacenes/pisos/quitar-mantenimiento/{id}', [PisoController::class, 'quitarDeMantenimiento'])->name('piso.q_mant');
     route::get('/almacenes/pisos/mantenimiento/{id}', [PisoController::class, 'mantEdit'])->name('piso.mant.edit');
+
+
+    // Rutas referentes a la gestion de casillas
+    route::get('/almacenes/casillas/{id_piso}', [CasillaController::class, 'index'])->name('casilla.index');
+    route::get('/almacenes/casillas/cargas/{id_cas}', [CasillaController::class, 'cargas'])->name('casilla.cargas');
+    route::get('/almacenes/casillas/create/{id_piso}', [CasillaController::class, 'create'])->name('casilla.create');
+    route::post('/almacenes/casillas/store', [CasillaController::class, 'store'])->name('casilla.store');
+    route::delete('/almacenes/casillas/destroy/{id}', [CasillaController::class, 'destroy'])->name('casilla.destroy');
+    route::patch('/almacenes/casillas/poner-mantenimiento/{id}', [CasillaController::class, 'ponerEnMantenimiento'])->name('casilla.p_mant');
+    route::patch('/almacenes/casillas/quitar-mantenimiento/{id}', [CasillaController::class, 'quitarDeMantenimiento'])->name('casilla.q_mant');
+    route::get('/almacenes/casillas/mantenimiento/{id}', [CasillaController::class, 'mantEdit'])->name('casilla.mant.edit');
 
 
     route::get('/almacenes/mantenimiento', [MantenimientoController::class, 'index'])->name('mant.index');

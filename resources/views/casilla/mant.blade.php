@@ -3,13 +3,13 @@
         <div class="mb-3 p-2 w-full">
             <h1>Establecer nueva fecha de mantenimiento</h1>
         </div>
-        <form class="login-form" method="post" action="{{ route('almacen.q_mant', $almacen->id) }}">
+        <form class="login-form" method="post" action="{{ route('casilla.q_mant', $casilla->id) }}">
             @csrf
             @method('patch')
 
             <div class="input-group">
                 <label for="fecha_mant">Fecha Mantenimiento</label>
-                <input type="date" id="fecha_mant" name="fecha_mant" value="{{ $almacen->fecha_mant }}">
+                <input type="date" id="fecha_mant" name="fecha_mant" value="{{ $casilla->fecha_mant }}">
             </div>
 
 

@@ -1,8 +1,8 @@
 <x-layout>
     <div class="text-center p-4 add">
-        <h1>Gestión de cargas</h1>
-        <form action="{{route('carga.create')}}" method="get">
-            <button type="submit" class="btn btn-success" style="width: 50%;">Agregar</button>
+        <h1>Cargas</h1>
+        <form action="{{route('carga.index')}}" method="get">
+            <button type="submit" class="btn btn-success" style="width: 50%;">Gestionar</button>
         </form>
     </div>
     @if (count($cargas) == 0)
@@ -25,7 +25,7 @@
                 <th scope="col">Peso</th>
                 <th scope="col">Fecha expiracion</th>
                 <th scope="col">Refrigerado</th>
-                <th scope="col">Acciones</th>
+                {{-- <th scope="col">Acciones</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -42,7 +42,7 @@
                 <td class="align-middle">{{$carga->peso}}</td>
                 <td class="align-middle">{{$carga->fechaexp}}</td>
                 <td class="align-middle">{{($carga->condrefrig == 1) ? "Sí" : "No" }}</td>
-                <td id="btns" class="align-middle" style=" padding: 1rem;">
+                {{-- <td id="btns" class="align-middle" style=" padding: 1rem;">
                     <div class="d-flex">
                         
                         <form action="{{route('carga.edit', $carga->id)}}" method="get">
@@ -55,7 +55,7 @@
                         </form>
                     </div>
                     
-                </td>
+                </td> --}}
             </tr>
             @endforeach
             

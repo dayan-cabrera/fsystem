@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_piso');
             $table->foreign('id_piso')->references('id')->on('pisos')->onDelete('cascade');
-            $table->boolean('mant');
-            $table->boolean('ocupada');
+            $table->boolean('mant')->default(false);
+            $table->boolean('ocupada')->default(false);
             $table->string('fecha_mant');
             $table->timestamps();
         });

@@ -11,8 +11,6 @@ class Casilla extends Model
 
     protected $fillable = [
         'id_piso',
-        'mant',
-        'ocupada',
         'fecha_mant'
     ];
 

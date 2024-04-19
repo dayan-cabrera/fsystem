@@ -152,7 +152,7 @@
                     <td class="align-middle">{{$casilla->fecha_mant}}</td>
                     <td id="btns" class="align-middle" style="padding: 1rem;">
                         <div class="d-flex">
-                            <form action="{{route('estante.mant.edit', $casilla->id)}}" method="get">
+                            <form action="{{route('casilla.mant.edit', $casilla->id)}}" method="get">
                                 @csrf
                                 <button style="margin: 4px;" class="btn btn-sm btn-info">Terminar Mantenimiento</button>
                             </form>

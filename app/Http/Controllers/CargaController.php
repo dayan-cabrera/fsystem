@@ -26,25 +26,26 @@ class CargaController extends Controller
     //     return view('carga.empaquetado', compact('tipos'));
     // }
 
-    public function index() 
+    public function index()
     {
         // getCargas
 
         $cargas = DB::table('cargas')
-                    ->join('tipo_productos', 'cargas.id_tipoprod', '=', 'tipo_productos.id')
-                    ->join('tipo_empaquetados', 'cargas.id_empaquetado', '=', 'tipo_empaquetados.id')
-                    ->join('companias', 'cargas.id_compania', '=', 'companias.id')
-                    ->join('casillas', 'cargas.id_casilla', '=', 'casillas.id')
-                    ->join('clientes', 'cargas.id_cliente', '=', 'clientes.id')
-                    ->select('cargas.id', 'cargas.nombre', 'cargas.codigo', 'cargas.fechaexp', 'tipo_productos.tipo as tipo_producto', 'tipo_empaquetados.tipo as empaquetado', 'companias.nombre as compania', 'id_casilla', 'clientes.nombre as cliente', 'cargas.condrefrig', 'cargas.peso')
-                    ->get();
+            ->join('tipo_productos', 'cargas.id_tipoprod', '=', 'tipo_productos.id')
+            ->join('tipo_empaquetados', 'cargas.id_empaquetado', '=', 'tipo_empaquetados.id')
+            ->join('companias', 'cargas.id_compania', '=', 'companias.id')
+            ->join('casillas', 'cargas.id_casilla', '=', 'casillas.id')
+            ->join('clientes', 'cargas.id_cliente', '=', 'clientes.id')
+            ->select('cargas.id', 'cargas.nombre', 'cargas.codigo', 'cargas.fechaexp', 'tipo_productos.tipo as tipo_producto', 'tipo_empaquetados.tipo as empaquetado', 'companias.nombre as compania', 'id_casilla', 'clientes.nombre as cliente', 'cargas.condrefrig', 'cargas.peso')
+            ->get();
 
         return view('carga.index', compact('cargas'));
     }
 
-    public function create() {
-        $tipos_productos = TipoProducto::select('id', 'tipo')->get(); 
-        $tipos_empaquetado = TipoEmpaquetado::select('id', 'tipo')->get(); 
+    public function create()
+    {
+        $tipos_productos = TipoProducto::select('id', 'tipo')->get();
+        $tipos_empaquetado = TipoEmpaquetado::select('id', 'tipo')->get();
         $clientes = Cliente::select('id', 'nombre')->get();
         $companias = Compania::select('id', 'nombre')->get();
         $casillas = Casilla::select('id')->get();
@@ -52,15 +53,16 @@ class CargaController extends Controller
         return view('carga.create', compact('tipos_productos', 'tipos_empaquetado', 'clientes', 'companias', 'casillas'));
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $carga = Carga::findOrFail($id);
-        $tipos_productos = TipoProducto::select('id', 'tipo')->get(); 
-        $tipos_empaquetado = TipoEmpaquetado::select('id', 'tipo')->get(); 
+        $tipos_productos = TipoProducto::select('id', 'tipo')->get();
+        $tipos_empaquetado = TipoEmpaquetado::select('id', 'tipo')->get();
         $clientes = Cliente::select('id', 'nombre')->get();
         $companias = Compania::select('id', 'nombre')->get();
         $casillas = Casilla::select('id')->get();
 
-        return view('carga.edit', compact('carga','tipos_productos', 'tipos_empaquetado', 'clientes', 'companias', 'casillas'));
+        return view('carga.edit', compact('carga', 'tipos_productos', 'tipos_empaquetado', 'clientes', 'companias', 'casillas'));
     }
 
     public function store(Request $request)
