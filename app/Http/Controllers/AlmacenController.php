@@ -136,7 +136,7 @@ class AlmacenController extends Controller
 
             $carga->id_casilla = $nuevaCasilla->id;
             $carga->save();
-            $this->cargas = $carga->id;
+            $this->cargas = $carga;
             $casilla->update(['ocupada' => true]);
         }
 
@@ -148,6 +148,13 @@ class AlmacenController extends Controller
         foreach ($estantes as $estante) {
             DB::table('pisos')->where('id_estante', $estante->id)
                 ->update(['mant' => true]);
+
+            $pisos = DB::table('pisos')->where('id_estante', $estante->id)->get();
+
+            foreach ($pisos as $piso) {
+                DB::table('casillas')->where('id_piso', $piso->id)
+                    ->update(['mant' => true, 'ocupada' => false]);
+            }
         }
 
         return back()->with('success', 'ok');
@@ -175,17 +182,14 @@ class AlmacenController extends Controller
                 $almacen->save();
 
                 foreach ($this->cargas as $carga) {
-                    if ($carga) {
-                        // Buscar una casilla disponible en el almacén
-                        $nuevaCasilla = Casilla::where('ocupada', false)->first();
-
-                        if ($nuevaCasilla) {
-                            // Reubicar carga
-                            $carga->id_casilla = $nuevaCasilla->id;
-                            $carga->save();
+                    $reubicar_carga = Carga::find($carga->id);
+                    if ($reubicar_carga) {
+                        $reubicar_carga->id_casilla = $carga->id_casilla;
+                        $casilla = Casilla::find($carga->id_casilla);
+                        if ($casilla) {
+                            $casilla->ocupada = true;
+                            $casilla->save();
                         }
-                        $nuevaCasilla->ocupada = true;
-                        $nuevaCasilla->save();
                     }
                 }
 
@@ -197,7 +201,15 @@ class AlmacenController extends Controller
                 foreach ($estantes as $estante) {
                     DB::table('pisos')->where('id_estante', $estante->id)
                         ->update(['mant' => false]);
+
+                    $pisos = DB::table('pisos')->where('id_estante', $estante->id)->get();
+
+                    foreach ($pisos as $piso) {
+                        DB::table('casillas')->where('id_piso', $piso->id)
+                            ->update(['mant' => false]);
+                    }
                 }
+
 
                 return redirect()->route('mant.index')->with('success', 'El almacén ha sido quitado de mantenimiento y las cargas han sido reubicadas.');
             }

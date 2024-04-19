@@ -27,16 +27,6 @@ class EstanteController extends Controller
         return view('estante.index', compact('estantes', 'id_alm'));
     }
 
-    // public function mantIndex($id_alm)
-    // {
-    //     $estantes = DB::table('estantes')->join('almacens', 'estantes.id_almacen', '=', 'almacens.id')
-    //         ->select('estantes.id', 'almacens.nombre as almacen', 'estantes.mant', 'estantes.fecha_mant')
-    //         ->where('id_almacen', $id_alm)->where('mant', true)->where('almacens.mantorep', false)
-    //         ->get();
-
-    //     return view('estante.mantenimiento.index', compact('estantes'));
-    // }
-
     public function create($id_alm)
     {
         return view('estante.create', compact('id_alm'));
@@ -57,31 +47,6 @@ class EstanteController extends Controller
             return back()->with('error', $e->getMessage());
         }
     }
-
-    // public function edit($id)
-    // {
-    //     $estante = Estante::findOrFail($id);
-    //     return view('estante.edit', compact('estante'));
-    // }
-
-    // public function update(Request $request, $id)
-    // {
-    //     try {
-
-    //         $data = $request->validate([
-    //             'id_empresa' => 'required',
-    //             'condrefrigerado' => 'required',
-    //             'nombre' => 'required',
-    //         ]);
-
-    //         $almacen = Almacen::findOrFail($id);
-    //         $almacen->update($data);
-
-    //         return redirect()->route('almacen.index')->with('success', 'updated');
-    //     } catch (ValidationException $e) {
-    //         return back()->with('error', $e->getMessage());
-    //     }
-    // }
 
     public function destroy($id)
     {
@@ -135,6 +100,11 @@ class EstanteController extends Controller
         DB::table('pisos')->where('id_estante', $estante->id)
             ->update(['mant' => true]);
 
+        foreach ($pisos as $piso) {
+            DB::table('casillas')->where('id_piso', $piso->id)
+                ->update(['mant' => true, 'ocupada' => false]);
+        }
+
         return back()->with('success', 'ok');
     }
 
@@ -161,22 +131,25 @@ class EstanteController extends Controller
                 $estante->save();
 
                 foreach ($this->cargas as $carga) {
-                    if ($carga) {
-                        // Buscar una casilla disponible en el almacén
-                        $nuevaCasilla = Casilla::where('ocupada', false)->first();
-
-                        if ($nuevaCasilla) {
-                            // Reubicar carga
-                            $carga->id_casilla = $nuevaCasilla->id;
-                            $carga->save();
+                    $reubicar_carga = Carga::find($carga->id);
+                    if ($reubicar_carga) {
+                        $reubicar_carga->id_casilla = $carga->id_casilla;
+                        $casilla = Casilla::find($carga->id_casilla);
+                        if ($casilla) {
+                            $casilla->ocupada = true;
+                            $casilla->save();
                         }
-                        $nuevaCasilla->ocupada = true;
-                        $nuevaCasilla->save();
                     }
                 }
 
                 DB::table('pisos')->where('id_estante', $estante->id)
                     ->update(['mant' => false]);
+                $pisos = Piso::where('id_estante', $estante->id)->get();
+
+                foreach ($pisos as $piso) {
+                    DB::table('casillas')->where('id_piso', $piso->id)
+                        ->update(['mant' => false]);
+                }
 
                 return redirect()->route('mant.index')->with('success', 'El almacén ha sido quitado de mantenimiento y las cargas han sido reubicadas.');
             }

@@ -6,14 +6,12 @@ use App\Http\Controllers\CargaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EstanteController;
 use App\Http\Controllers\MantenimientoController;
+use App\Http\Controllers\PisoController;
 use App\Http\Controllers\UserController;
-use App\Models\Rol;
 use Illuminate\Support\Facades\Route;
 
 
-route::get('/', function () {
-    return Rol::all();
-});
+
 route::get('/login', [AuthController::class, 'login'])->name('login');
 route::post('/login/auth', [AuthController::class, 'authenticate'])->name('auth');
 
@@ -76,6 +74,16 @@ route::middleware(['auth', 'verified'])->group(function () {
     route::patch('/almacenes/estantes/quitar-mantenimiento/{id}', [EstanteController::class, 'quitarDeMantenimiento'])->name('estante.q_mant');
     // route::get('/almacenes/estantes/mantenimiento', [EstanteController::class, 'mantIndex'])->name('estante.mant.index');
     route::get('/almacenes/estantes/mantenimiento/{id}', [EstanteController::class, 'mantEdit'])->name('estante.mant.edit');
+
+
+    // Rutas referentes a la gestion de piso
+    route::get('/almacenes/pisos/{id_est}', [PisoController::class, 'index'])->name('piso.index');
+    route::get('/almacenes/pisos/create/{id_est}', [PisoController::class, 'create'])->name('piso.create');
+    route::post('/almacenes/pisos/store', [PisoController::class, 'store'])->name('piso.store');
+    route::delete('/almacenes/pisos/destroy/{id}', [PisoController::class, 'destroy'])->name('piso.destroy');
+    route::patch('/almacenes/pisos/poner-mantenimiento/{id}', [PisoController::class, 'ponerEnMantenimiento'])->name('piso.p_mant');
+    route::patch('/almacenes/pisos/quitar-mantenimiento/{id}', [PisoController::class, 'quitarDeMantenimiento'])->name('piso.q_mant');
+    route::get('/almacenes/pisos/mantenimiento/{id}', [PisoController::class, 'mantEdit'])->name('piso.mant.edit');
 
 
     route::get('/almacenes/mantenimiento', [MantenimientoController::class, 'index'])->name('mant.index');

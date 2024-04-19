@@ -11,7 +11,6 @@ class Piso extends Model
 
     protected $fillable = [
         'id_estante',
-        'mant',
         'fecha_mant'
     ];
 
