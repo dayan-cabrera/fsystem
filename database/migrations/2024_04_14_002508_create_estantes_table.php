@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_almacen');
             $table->foreign('id_almacen')->references('id')->on('almacens')->onDelete('cascade');
-            $table->boolean('mant');
+            $table->boolean('mant')->default(false);
             $table->string('fecha_mant');
             $table->timestamps();
         });

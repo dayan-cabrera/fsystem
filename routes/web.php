@@ -4,6 +4,8 @@ use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CargaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\EstanteController;
+use App\Http\Controllers\MantenimientoController;
 use App\Http\Controllers\UserController;
 use App\Models\Rol;
 use Illuminate\Support\Facades\Route;
@@ -51,15 +53,30 @@ route::middleware(['auth', 'verified'])->group(function () {
     route::put('/cargas/create/update/{id}', [CargaController::class, 'update'])->name('carga.update');
     route::delete('/cargas/destroy/{id}', [CargaController::class, 'destroy'])->name('carga.destroy');
 
-    // Rutas referentes a la gestion de cargas
+    // Rutas referentes a la gestion de almacenes
     route::get('/almacenes', [AlmacenController::class, 'index'])->name('almacen.index');
     route::get('/almacenes/create', [AlmacenController::class, 'create'])->name('almacen.create');
-    route::get('/almacenes/create/edit/{id}', [AlmacenController::class, 'edit'])->name('almacen.edit');
-    route::post('/almacenes/create/store', [AlmacenController::class, 'store'])->name('almacen.store');
-    route::put('/almacenes/create/update/{id}', [AlmacenController::class, 'update'])->name('almacen.update');
+    route::get('/almacenes/edit/{id}', [AlmacenController::class, 'edit'])->name('almacen.edit');
+    route::post('/almacenes/store', [AlmacenController::class, 'store'])->name('almacen.store');
+    route::put('/almacenes/update/{id}', [AlmacenController::class, 'update'])->name('almacen.update');
     route::delete('/almacenes/destroy/{id}', [AlmacenController::class, 'destroy'])->name('almacen.destroy');
     route::patch('/almacenes/poner-mantenimiento/{id}', [AlmacenController::class, 'ponerEnMantenimiento'])->name('almacen.p_mant');
     route::patch('/almacenes/quitar-mantenimiento/{id}', [AlmacenController::class, 'quitarDeMantenimiento'])->name('almacen.q_mant');
-    route::get('/almacenes/mantenimiento', [AlmacenController::class, 'mantIndex'])->name('mant.index');
-    route::get('/almacenes/mantenimiento/{id}', [AlmacenController::class, 'mantEdit'])->name('mant.edit');
+    // route::get('/almacenes/mantenimiento', [AlmacenController::class, 'mantIndex'])->name('mant.index');
+    route::get('/almacenes/mantenimiento/{id}', [AlmacenController::class, 'mantEdit'])->name('almacen.mant.edit');
+
+    // Rutas referentes a la gestion de estantes
+    route::get('/almacenes/estantes/{id_alm}', [EstanteController::class, 'index'])->name('estante.index');
+    route::get('/almacenes/estantes/create/{id_alm}', [EstanteController::class, 'create'])->name('estante.create');
+    // route::get('/almacenes/estantes/edit/{id}', [EstanteController::class, 'edit'])->name('estante.edit');
+    route::post('/almacenes/estantes/store', [EstanteController::class, 'store'])->name('estante.store');
+    // route::put('/almacenes/estantes/update/{id}', [EstanteController::class, 'update'])->name('estante.update');
+    route::delete('/almacenes/estantes/destroy/{id}', [EstanteController::class, 'destroy'])->name('estante.destroy');
+    route::patch('/almacenes/estantes/poner-mantenimiento/{id}', [EstanteController::class, 'ponerEnMantenimiento'])->name('estante.p_mant');
+    route::patch('/almacenes/estantes/quitar-mantenimiento/{id}', [EstanteController::class, 'quitarDeMantenimiento'])->name('estante.q_mant');
+    // route::get('/almacenes/estantes/mantenimiento', [EstanteController::class, 'mantIndex'])->name('estante.mant.index');
+    route::get('/almacenes/estantes/mantenimiento/{id}', [EstanteController::class, 'mantEdit'])->name('estante.mant.edit');
+
+
+    route::get('/almacenes/mantenimiento', [MantenimientoController::class, 'index'])->name('mant.index');
 });

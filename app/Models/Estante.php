@@ -11,7 +11,6 @@ class Estante extends Model
 
     protected $fillable = [
         'id_almacen',
-        'mant',
         'fecha_mant',
     ];
 

@@ -28,15 +28,15 @@ class AlmacenController extends Controller
         return view('almacen.index', compact('almacenes'));
     }
 
-    public function mantIndex()
-    {
-        $mantenimiento = DB::table('almacens')->join('empresas', 'almacens.id_empresa', '=', 'empresas.id')
-            ->select('almacens.id', 'almacens.nombre', 'empresas.nombre as empresa', 'almacens.condrefrigerado', 'almacens.mantorep', 'almacens.fecha_mant')->orderBy('nombre', 'asc')
-            ->where('almacens.mantorep', true)
-            ->get();
+    // public function mantIndex()
+    // {
+    //     $mantenimiento = DB::table('almacens')->join('empresas', 'almacens.id_empresa', '=', 'empresas.id')
+    //         ->select('almacens.id', 'almacens.nombre', 'empresas.nombre as empresa', 'almacens.condrefrigerado', 'almacens.mantorep', 'almacens.fecha_mant')->orderBy('nombre', 'asc')
+    //         ->where('almacens.mantorep', true)
+    //         ->get();
 
-        return view('almacen.mantenimiento.index', compact('mantenimiento'));
-    }
+    //     return view('almacen.mantenimiento.index', compact('mantenimiento'));
+    // }
 
     public function create()
     {
@@ -70,7 +70,6 @@ class AlmacenController extends Controller
         return view('almacen.edit', compact('empresas', 'almacen'));
     }
 
-
     public function update(Request $request, $id)
     {
         try {
@@ -79,7 +78,6 @@ class AlmacenController extends Controller
                 'id_empresa' => 'required',
                 'condrefrigerado' => 'required',
                 'nombre' => 'required',
-                'fecha_mant' => 'required'
             ]);
 
             $almacen = Almacen::findOrFail($id);
@@ -124,7 +122,6 @@ class AlmacenController extends Controller
         foreach ($listaOcupadas as $casillaOcupada) {
             $carga = Carga::where('id_casilla', $casillaOcupada->id)->first();
 
-            dd($carga);
             // Buscar un nuevo almacén adecuado para la carga
             $nuevoAlmacen = Almacen::where('mantorep', false)
                 ->where('condrefrigerado', $carga->condrefrig)
@@ -159,7 +156,7 @@ class AlmacenController extends Controller
     public function mantEdit($id)
     {
         $almacen = Almacen::findOrFail($id);
-        return view('almacen.mantenimiento.edit', compact('almacen'));
+        return view('almacen.mant', compact('almacen'));
     }
 
     public function quitarDeMantenimiento(Request $request, $id)
