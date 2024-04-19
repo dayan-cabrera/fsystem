@@ -350,7 +350,7 @@ return [
                 ],
                 [
                     'text' => 'Gestión de compañías',
-                    'url' => '#'
+                    'url' => '/companias'
                 ],
                 [
                     'text' => 'Gestión de cargas',

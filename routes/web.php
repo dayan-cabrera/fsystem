@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CargaController;
 use App\Http\Controllers\CasillaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CompaniaController;
 use App\Http\Controllers\EstanteController;
 use App\Http\Controllers\MantenimientoController;
 use App\Http\Controllers\PisoController;
@@ -99,4 +100,13 @@ route::middleware(['auth', 'verified'])->group(function () {
 
 
     route::get('/almacenes/mantenimiento', [MantenimientoController::class, 'index'])->name('mant.index');
+
+    // Rutas referentes a las companias
+    route::get('/companias', [CompaniaController::class, 'index'])->name('compania.index');
+    route::get('/companias/create', [CompaniaController::class, 'create'])->name('compania.create');
+    // route::get('/companias/show/{id}', [CompaniaController::class, 'show'])->name('compania.show');
+    route::get('/companias/create/edit/{id}', [CompaniaController::class, 'edit'])->name('compania.edit');
+    route::post('/companias/create/store', [CompaniaController::class, 'store'])->name('compania.store');
+    route::put('/companias/create/update/{id}', [CompaniaController::class, 'update'])->name('compania.update');
+    route::delete('/companias/destroy/{id}', [CompaniaController::class, 'destroy'])->name('compania.destroy');
 });
