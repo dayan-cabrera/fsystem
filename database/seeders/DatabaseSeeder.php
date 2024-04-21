@@ -29,8 +29,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Cliente::factory(4)->create();
         $this->call([
-            RoleSeeder::class
+            RoleSeeder::class,
+            DefaultValuesSeeder::class
         ]);
 
         User::create([
@@ -45,20 +47,19 @@ class DatabaseSeeder extends Seeder
 
 
 
-        Cliente::factory(10)->create();
-        Empresa::factory(1)->create();
-        Almacen::factory(10)->create();
-        Estante::factory(10)->create();
-        Piso::factory(10)->create();
-        Casilla::factory(10)->create();
-        Factura::factory(10)->create();
-        Seguridad::factory(10)->create();
-        TipoCompania::factory(10)->create();
-        Prioridad::factory(10)->create();
-        CondAlm::factory(10)->create();
-        Compania::factory(10)->create();
-        TipoEmpaquetado::factory(10)->create();
-        TipoProducto::factory(10)->create();
-        Carga::factory(10)->create();
+        // Empresa::factory(1)->create();
+        // Almacen::factory(10)->create();
+        // Estante::factory(10)->create();
+        // Piso::factory(10)->create();
+        // Casilla::factory(10)->create();
+        // Factura::factory(10)->create();
+        // Seguridad::factory(10)->create();
+        // TipoCompania::factory(10)->create();
+        // Prioridad::factory(10)->create();
+        // CondAlm::factory(10)->create();
+        // Compania::factory(10)->create();
+        // TipoEmpaquetado::factory(10)->create();
+        // TipoProducto::factory(10)->create();
+        // Carga::factory(10)->create();
     }
 }

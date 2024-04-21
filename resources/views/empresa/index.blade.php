@@ -38,9 +38,12 @@
                 </div>
             </div>
 
+            @hasrole('Administrador')
+            
             <form action="{{route('empresa.edit')}}" method="get">
                 <button class="btn btn-success mt-5 p-2 mb-5" type="submit" style="width: 100%" href="#">Actualizar información</button>
             </form>
+            @endhasrole
 
       
         </div>
