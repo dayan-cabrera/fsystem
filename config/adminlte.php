@@ -364,24 +364,13 @@ return [
             'submenu' => [
                 [
                     'text' => 'Ficha de empresa',
-                    'url' => '#',
+                    'url' => '/empresa',
                 ],
                 [
-                    'text' => 'Ficha de compañía',
-                    'url' => '#',
+                    'text' => 'Facturas',
+                    'url' => '/facturas',
                 ],
-                [
-                    'text' => 'Cliente',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'Almacenes',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'Cargas',
-                    'url' => '#',
-                ],
+
             ],
         ],
 

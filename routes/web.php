@@ -6,7 +6,9 @@ use App\Http\Controllers\CargaController;
 use App\Http\Controllers\CasillaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompaniaController;
+use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EstanteController;
+use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\MantenimientoController;
 use App\Http\Controllers\PisoController;
 use App\Http\Controllers\UserController;
@@ -109,4 +111,16 @@ route::middleware(['auth', 'verified'])->group(function () {
     route::post('/companias/create/store', [CompaniaController::class, 'store'])->name('compania.store');
     route::put('/companias/create/update/{id}', [CompaniaController::class, 'update'])->name('compania.update');
     route::delete('/companias/destroy/{id}', [CompaniaController::class, 'destroy'])->name('compania.destroy');
+
+    // Rutas referentes a la gestion facturas
+    // route::get('/facturas/create', [FacturaController::class, 'create'])->name('factura.create');
+    route::get('/facturas', [FacturaController::class, 'index'])->name('factura.index');
+    route::post('/facturas/store/', [FacturaController::class, 'store'])->name('factura.store');
+    route::patch('/facturas/update/{id}', [FacturaController::class, 'update'])->name('factura.update');
+    route::delete('/facturas/destroy/{id}', [FacturaController::class, 'destroy'])->name('factura.destroy');
+
+    //Rutas referentes a la gestion facturas
+    route::get('/empresa', [EmpresaController::class, 'index'])->name('empresa.index');
+    route::get('/empresa/edit', [EmpresaController::class, 'edit'])->name('empresa.edit');
+    route::put('/empresa/store/', [EmpresaController::class, 'update'])->name('empresa.update');
 });

@@ -20,6 +20,5 @@ class Factura extends Model
         'fecha_acordada',
         'fecha_entrada',
         'fecha_salida',
-        'archivado'
     ];
 }

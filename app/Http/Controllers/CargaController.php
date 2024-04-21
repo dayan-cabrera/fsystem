@@ -9,8 +9,11 @@ use App\Models\Carga;
 use App\Models\Casilla;
 use App\Models\Cliente;
 use App\Models\Compania;
+use App\Models\Empresa;
 use App\Models\TipoEmpaquetado;
 use Illuminate\Support\Facades\DB;
+
+use function Laravel\Prompts\select;
 
 class CargaController extends Controller
 {
@@ -81,8 +84,10 @@ class CargaController extends Controller
             'peso' => 'required'
         ]);
 
-        Carga::create($data);
-        return redirect()->route('carga.index')->with('success', 'Carga creada exitosamente');
+        $empresas = Empresa::select('id', 'nombre')->get();
+        return view('factura.create', compact('data', 'empresas'));
+        // Carga::create($data);
+        // return redirect()->route('carga.index')->with('success', 'Carga creada exitosamente');
     }
 
     public function update(Request $request, $id)

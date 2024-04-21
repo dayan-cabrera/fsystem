@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('fecha_acordada');
             $table->string('fecha_entrada');
             $table->string('fecha_salida');
-            $table->boolean('archivado');
+            $table->boolean('archivado')->default(false);
             $table->timestamps();
         });
     }

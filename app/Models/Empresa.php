@@ -17,6 +17,6 @@ class Empresa extends Model
         'recursos_humanos',
         'contabilidad',
         'secretario',
-        'logo'
+        'logo',
     ];
 }

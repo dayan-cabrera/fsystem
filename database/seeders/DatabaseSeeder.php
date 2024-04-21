@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class
         ]);
-        
+
         User::create([
             'name' => 'Admin',
             'password' => bcrypt('1'),
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
 
 
         Cliente::factory(10)->create();
-        Empresa::factory(10)->create();
+        Empresa::factory(1)->create();
         Almacen::factory(10)->create();
         Estante::factory(10)->create();
         Piso::factory(10)->create();
@@ -60,8 +60,5 @@ class DatabaseSeeder extends Seeder
         TipoEmpaquetado::factory(10)->create();
         TipoProducto::factory(10)->create();
         Carga::factory(10)->create();
-
-
-       
     }
 }

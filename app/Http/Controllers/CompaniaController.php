@@ -114,28 +114,4 @@ class CompaniaController extends Controller
         Compania::destroy($id);
         return redirect()->back()->with('success', 'ok');
     }
-
-    // public function getTipoC()
-    // {
-    //     $tipos = Auxi::where('tipo', 'tipo_compania')->get();
-    //     return view('companias.tipo', compact('tipos'));
-    // }
-
-    // public function getCondA()
-    // {
-    //     $condiciones = Auxi::where('tipo', 'cond_alm')->get();
-    //     return view('companias.cond', compact('condiciones'));
-    // }
-
-    // public function getSeg()
-    // {
-    //     $seguridades = Auxi::where('tipo', 'seguridad')->get();
-    //     return view('companias.seg', compact('seguridades'));
-    // }
-
-    // public function getPrior()
-    // {
-    //     $prioridades = Auxi::where('tipo', 'prioridad')->get();
-    //     return view('companias.prior', compact('prioridades'));
-    // }
 }

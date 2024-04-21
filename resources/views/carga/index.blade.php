@@ -51,7 +51,7 @@
                         <form action="{{route('carga.destroy', $carga->id)}}" method="post">
                             @csrf
                             @method('delete')
-                            <button type="submit" style="margin: 4px;" class="btn btn-sm btn-danger">Eliminar</button>
+                            <button type="submit" style="margin: 4px;" class="btn btn-sm btn-danger">Sacar</button>
                         </form>
                     </div>
                     
