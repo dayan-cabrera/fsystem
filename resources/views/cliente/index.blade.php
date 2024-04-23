@@ -42,10 +42,6 @@
                 <td class="align-middle">{{($cliente->entidad != 0) ? 'Sí' : 'No'}}</td>
                 <td id="btns" class="align-middle" style=" padding: 1rem;">
                     <div class="d-flex">
-                        
-                        <form action="" method="get">
-                            <button style="margin: 4px;" class="btn btn-sm btn-info">Editar</button>
-                        </form>
                         <form action="{{route('cliente.destroy', $cliente->id)}}" method="post">
                             @csrf
                             @method('delete')

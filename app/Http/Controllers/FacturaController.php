@@ -62,12 +62,6 @@ class FacturaController extends Controller
         return redirect()->route('carga.index')->with('success', 'ok');
     }
 
-    public function edit($id)
-    {
-        $factura = Factura::findOrFail($id);
-
-        return view('factura.edit', compact('factura'));
-    }
 
     public function update(Request $request, $id)
     {

@@ -31,12 +31,22 @@ class AuthController extends Controller
                 'password' => 'required'
             ]);
 
-            if($this->userService->login($credentials, $request)) 
-                return redirect()->intended('/');
-            else
-                return redirect()->route('login')->with('error', 'Usuario o contraseña incorrecta.');
+            if (Auth::attempt($credentials)) {
+                if (Auth::user()->getRoleNames()->count() > 0) {
+                    $request->session()->regenerate();
+                    return redirect()->intended('dashboard');
+                } else {
+                    Auth::logout();
+                    return redirect()->route('login')->with('error', 'No tienes permisos para acceder.');
+                }
+            }
 
+            // dd($credentials);
+
+            return redirect()->route('login')->with('error', 'Email o contraseña incorrecta.');
         } catch (ValidationException $e) {
+            // dd("npo tienes persmisos");
+
             return back()->with('error', $e->getMessage());
         }
     }
@@ -51,11 +61,15 @@ class AuthController extends Controller
         try {
 
             $credentials = $request->validate([
-                'name' => 'required|string|unique:users,name',
+                'name' => 'required|string',
                 'password' => 'required'
             ]);
 
-            $this->userService->register($credentials);
+            $newUser = new User();
+            $newUser->name = $credentials['name'];
+            $newUser->password = bcrypt($credentials['password']);
+            $newUser->save();
+
 
             return redirect()->route('login');
         } catch (ValidationException $e) {
@@ -65,7 +79,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        $this->userService->logout();
+        Auth::logout();
         return redirect('/');
     }
 }
