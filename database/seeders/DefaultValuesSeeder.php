@@ -2,22 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Almacen;
-use App\Models\Carga;
-use App\Models\Casilla;
-use App\Models\Cliente;
-use App\Models\Compania;
-use App\Models\CondAlm;
-use App\Models\Empresa;
-use App\Models\Estante;
-use App\Models\Factura;
-use App\Models\Piso;
-use App\Models\Prioridad;
-use App\Models\Seguridad;
-use App\Models\TipoCompania;
-use App\Models\TipoEmpaquetado;
-use App\Models\TipoProducto;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -49,7 +33,7 @@ class DefaultValuesSeeder extends Seeder
             ],
             [
                 'id_empresa' => 1,
-                'condrefrigerado' => false,
+                'condrefrigerado' => true,
                 'nombre' => 'Almacén Secundario',
                 'mantorep' => false,
                 'fecha_mant' => '2024-06-21',

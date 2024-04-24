@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\TipoProducto;
 use Illuminate\Http\Request;
-// use App\Models\Auxi;
 use App\Models\Carga;
 use App\Models\Casilla;
 use App\Models\Cliente;
@@ -13,25 +12,10 @@ use App\Models\Empresa;
 use App\Models\TipoEmpaquetado;
 use Illuminate\Support\Facades\DB;
 
-use function Laravel\Prompts\select;
-
 class CargaController extends Controller
 {
-    // public function getTipoP()
-    // {
-    //     $tipos = TipoProducto::select('nombre')->get();
-    //     return view('carga.producto', compact('tipos'));
-    // }
-
-    // public function getTipoEmp()
-    // {
-    //     $tipos = TipoEmpaquetado::select('tipo')->get();
-    //     return view('carga.empaquetado', compact('tipos'));
-    // }
-
     public function index()
     {
-        // getCargas
 
         $cargas = DB::table('cargas')
             ->join('tipo_productos', 'cargas.id_tipoprod', '=', 'tipo_productos.id')
@@ -86,8 +70,6 @@ class CargaController extends Controller
 
         $empresas = Empresa::select('id', 'nombre')->get();
         return view('factura.create', compact('data', 'empresas'));
-        // Carga::create($data);
-        // return redirect()->route('carga.index')->with('success', 'Carga creada exitosamente');
     }
 
     public function update(Request $request, $id)
@@ -118,16 +100,4 @@ class CargaController extends Controller
         Carga::where('id', $codCarga)->delete();
         return redirect()->route('carga.index')->with('success', 'Carga eliminada correctamente');
     }
-
-    // public function modificarFechas($codCarga, $codCasilla)
-    // {
-    //     DB::table('factura')
-    //         ->where('id', $codCarga)
-    //         ->update([
-    //             'cod_casilla' => $codCasilla,
-    //             'fecha_salida' => $codCasilla,
-    //             'fecha_salida_real' => $codCasilla,
-    //         ]);
-    //     return redirect()->route('cargas.index')->with('success', 'Fechas modificadas correctamente');
-    // }
 }

@@ -13,7 +13,6 @@ use Illuminate\Validation\ValidationException;
 
 class EstanteController extends Controller
 {
-    private $cargas = [];
 
     public function index($id_alm)
     {
@@ -80,18 +79,21 @@ class EstanteController extends Controller
             // Buscar un nuevo almacén adecuado para la carga
             $nuevoAlmacen = Almacen::where('mantorep', false)
                 ->where('condrefrigerado', $carga->condrefrig)
+                ->where('id', '!=', $estante->id_almacen)
                 ->first();
+
             if (!$nuevoAlmacen) return back()->with('error', 'No hay almacen disponible para las características de las cargas');
 
             // Reubicar carga
-            $nuevaCasilla = Casilla::where('id_piso', $nuevoAlmacen->id)
-                ->where('mant', false)
-                ->first();
+
+            $nuevaCasilla = DB::table('casillas')->join('pisos', 'casillas.id_piso', '=', 'pisos.id')
+                ->join('estantes', 'pisos.id_estante', '=', 'estantes.id')->where('estantes.id_almacen', $nuevoAlmacen->id)
+                ->where('casillas.ocupada', false)->select('casillas.id')->first();
+
             if (!$nuevaCasilla) return back()->with('error', 'No hay casillas disponible para las características de las cargas');
 
             $carga->id_casilla = $nuevaCasilla->id;
             $carga->save();
-            $this->cargas = $carga->id;
             $casilla->update(['ocupada' => true]);
         }
 
@@ -130,17 +132,6 @@ class EstanteController extends Controller
                 $estante->mant = false;
                 $estante->save();
 
-                foreach ($this->cargas as $carga) {
-                    $reubicar_carga = Carga::find($carga->id);
-                    if ($reubicar_carga) {
-                        $reubicar_carga->id_casilla = $carga->id_casilla;
-                        $casilla = Casilla::find($carga->id_casilla);
-                        if ($casilla) {
-                            $casilla->ocupada = true;
-                            $casilla->save();
-                        }
-                    }
-                }
 
                 DB::table('pisos')->where('id_estante', $estante->id)
                     ->update(['mant' => false]);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Almacen;
 use App\Models\Carga;
 use App\Models\Casilla;
+use App\Models\Estante;
 use App\Models\Piso;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\DB;
 
 class PisoController extends Controller
 {
-    private $cargas = [];
 
     public function index($id_est)
     {
@@ -60,6 +60,7 @@ class PisoController extends Controller
 
         // Obtener Pisos del almacén
         $piso = Piso::findOrFail($id);
+        $estante = Estante::findOrFail($piso->id_estante);
 
         $casillas = Casilla::where('id_piso', $piso->id)->get();
         foreach ($casillas as $casilla) {
@@ -76,18 +77,21 @@ class PisoController extends Controller
             // Buscar un nuevo almacén adecuado para la carga
             $nuevoAlmacen = Almacen::where('mantorep', false)
                 ->where('condrefrigerado', $carga->condrefrig)
+                ->where('id', '!=', $estante->id_almacen)
                 ->first();
+
             if (!$nuevoAlmacen) return back()->with('error', 'No hay almacen disponible para las características de las cargas');
 
             // Reubicar carga
-            $nuevaCasilla = Casilla::where('id_piso', $nuevoAlmacen->id)
-                ->where('mant', false)
-                ->first();
+            $nuevaCasilla = DB::table('casillas')->join('pisos', 'casillas.id_piso', '=', 'pisos.id')
+                ->join('estantes', 'pisos.id_estante', '=', 'estantes.id')->where('estantes.id_almacen', $nuevoAlmacen->id)
+                ->where('casillas.ocupada', false)->select('casillas.id')->first();
+
+
             if (!$nuevaCasilla) return back()->with('error', 'No hay casillas disponible para las características de las cargas');
 
             $carga->id_casilla = $nuevaCasilla->id;
             $carga->save();
-            $this->cargas = $carga->id;
             $casilla->update(['ocupada' => true]);
         }
 
@@ -120,18 +124,6 @@ class PisoController extends Controller
                 $piso->fecha_mant = $request->fecha_mant;
                 $piso->mant = false;
                 $piso->save();
-
-                foreach ($this->cargas as $carga) {
-                    $reubicar_carga = Carga::find($carga->id);
-                    if ($reubicar_carga) {
-                        $reubicar_carga->id_casilla = $carga->id_casilla;
-                        $casilla = Casilla::find($carga->id_casilla);
-                        if ($casilla) {
-                            $casilla->ocupada = true;
-                            $casilla->save();
-                        }
-                    }
-                }
 
                 DB::table('casillas')->where('id_piso', $piso->id)
                     ->update(['mant' => false]);

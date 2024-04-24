@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Almacen;
 use App\Models\Carga;
 use App\Models\Casilla;
+use App\Models\Estante;
+use App\Models\Piso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class CasillaController extends Controller
 {
-    private $cargas = [];
 
     public function index($id_piso)
     {
@@ -71,9 +72,12 @@ class CasillaController extends Controller
     {
         $listaOcupadas = [];
 
-        // Obtener Pisos del almacén
-
         $casilla = Casilla::findOrFail($id);
+
+        // Obtener Pisos del almacén
+        $piso = Piso::findOrFail($casilla->id_piso);
+        $estante = Estante::findOrFail($piso->id_estante);
+
         if ($casilla->ocupada) {
             // Añadir a lista de ocupadas
             $listaOcupadas[] = $casilla;
@@ -86,18 +90,19 @@ class CasillaController extends Controller
             // Buscar un nuevo almacén adecuado para la carga
             $nuevoAlmacen = Almacen::where('mantorep', false)
                 ->where('condrefrigerado', $carga->condrefrig)
+                ->where('id', '!=', $estante->id_almacen)
                 ->first();
             if (!$nuevoAlmacen) return back()->with('error', 'No hay almacen disponible para las características de las cargas');
 
             // Reubicar carga
-            $nuevaCasilla = Casilla::where('id_piso', $nuevoAlmacen->id)
-                ->where('mant', false)
-                ->first();
+            $nuevaCasilla = DB::table('casillas')->join('pisos', 'casillas.id_piso', '=', 'pisos.id')
+                ->join('estantes', 'pisos.id_estante', '=', 'estantes.id')->where('estantes.id_almacen', $nuevoAlmacen->id)
+                ->where('casillas.ocupada', false)->select('casillas.id')->first();
+
             if (!$nuevaCasilla) return back()->with('error', 'No hay casillas disponible para las características de las cargas');
 
             $carga->id_casilla = $nuevaCasilla->id;
             $carga->save();
-            $this->cargas = $carga->id;
             $casilla->update(['ocupada' => true]);
         }
 
@@ -129,18 +134,6 @@ class CasillaController extends Controller
                 $casilla->fecha_mant = $request->fecha_mant;
                 $casilla->mant = false;
                 $casilla->save();
-
-                foreach ($this->cargas as $carga) {
-                    $reubicar_carga = Carga::find($carga->id);
-                    if ($reubicar_carga) {
-                        $reubicar_carga->id_casilla = $carga->id_casilla;
-                        $casilla = Casilla::find($carga->id_casilla);
-                        if ($casilla) {
-                            $casilla->ocupada = true;
-                            $casilla->save();
-                        }
-                    }
-                }
 
                 return redirect()->route('mant.index')->with('success', 'El almacén ha sido quitado de mantenimiento y las cargas han sido reubicadas.');
             }

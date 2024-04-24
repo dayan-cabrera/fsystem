@@ -11,10 +11,10 @@ use App\Models\Piso;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use JeroenNoten\LaravelAdminLte\View\Components\Widget\Card;
 
 class AlmacenController extends Controller
 {
-    private $cargas = [];
 
     public function index()
     {
@@ -27,16 +27,6 @@ class AlmacenController extends Controller
 
         return view('almacen.index', compact('almacenes'));
     }
-
-    // public function mantIndex()
-    // {
-    //     $mantenimiento = DB::table('almacens')->join('empresas', 'almacens.id_empresa', '=', 'empresas.id')
-    //         ->select('almacens.id', 'almacens.nombre', 'empresas.nombre as empresa', 'almacens.condrefrigerado', 'almacens.mantorep', 'almacens.fecha_mant')->orderBy('nombre', 'asc')
-    //         ->where('almacens.mantorep', true)
-    //         ->get();
-
-    //     return view('almacen.mantenimiento.index', compact('mantenimiento'));
-    // }
 
     public function create()
     {
@@ -51,7 +41,6 @@ class AlmacenController extends Controller
                 'id_empresa' => 'required',
                 'condrefrigerado' => 'required',
                 'nombre' => 'required',
-                'mantorep' => 'required',
                 'fecha_mant' => 'required'
             ]);
 
@@ -125,18 +114,21 @@ class AlmacenController extends Controller
             // Buscar un nuevo almacén adecuado para la carga
             $nuevoAlmacen = Almacen::where('mantorep', false)
                 ->where('condrefrigerado', $carga->condrefrig)
+                ->where('id', '!=', $id)
                 ->first();
+
             if (!$nuevoAlmacen) return back()->with('error', 'No hay almacen disponible para las características de las cargas');
 
             // Reubicar carga
-            $nuevaCasilla = Casilla::where('id_piso', $nuevoAlmacen->id)
-                ->where('mant', false)
-                ->first();
+
+            $nuevaCasilla = DB::table('casillas')->join('pisos', 'casillas.id_piso', '=', 'pisos.id')
+                ->join('estantes', 'pisos.id_estante', '=', 'estantes.id')->where('estantes.id_almacen', $nuevoAlmacen->id)
+                ->where('casillas.ocupada', false)->select('casillas.id')->first();
+
             if (!$nuevaCasilla) return back()->with('error', 'No hay casillas disponible para las características de las cargas');
 
             $carga->id_casilla = $nuevaCasilla->id;
             $carga->save();
-            $this->cargas = $carga;
             $casilla->update(['ocupada' => true]);
         }
 
@@ -180,18 +172,6 @@ class AlmacenController extends Controller
                 $almacen->fecha_mant = $request->fecha_mant;
                 $almacen->mantorep = false;
                 $almacen->save();
-
-                foreach ($this->cargas as $carga) {
-                    $reubicar_carga = Carga::find($carga->id);
-                    if ($reubicar_carga) {
-                        $reubicar_carga->id_casilla = $carga->id_casilla;
-                        $casilla = Casilla::find($carga->id_casilla);
-                        if ($casilla) {
-                            $casilla->ocupada = true;
-                            $casilla->save();
-                        }
-                    }
-                }
 
                 DB::table('estantes')->where('id_almacen', $almacen->id)
                     ->update(['mant' => false]);

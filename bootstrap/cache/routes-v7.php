@@ -90,7 +90,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::RcTZVuFK9QZ8c85t',
+            '_route' => 'generated::7cxZWYcdztkjrrui',
           ),
           1 => NULL,
           2 => 
@@ -1500,7 +1500,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::HoSP0VZGAsSnRfkW',
+            '_route' => 'generated::qfp6lGTKNdG9UAQ9',
           ),
           1 => 
           array (
@@ -1677,7 +1677,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::RcTZVuFK9QZ8c85t' => 
+    'generated::7cxZWYcdztkjrrui' => 
     array (
       'methods' => 
       array (
@@ -1696,7 +1696,7 @@ app('router')->setCompiledRoutes(
 
                     return \\Illuminate\\Support\\Facades\\View::file(\'/home/dayan-cabrera/Dev/fsystem/facturation-system/vendor/laravel/framework/src/Illuminate/Foundation/Configuration\'.\'/../resources/health-up.blade.php\');
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"00000000000005900000000000000000";}}',
-        'as' => 'generated::RcTZVuFK9QZ8c85t',
+        'as' => 'generated::7cxZWYcdztkjrrui',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1894,7 +1894,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::HoSP0VZGAsSnRfkW' => 
+    'generated::qfp6lGTKNdG9UAQ9' => 
     array (
       'methods' => 
       array (
@@ -1916,7 +1916,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::HoSP0VZGAsSnRfkW',
+        'as' => 'generated::qfp6lGTKNdG9UAQ9',
       ),
       'fallback' => true,
       'defaults' => 
