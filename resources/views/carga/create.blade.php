@@ -51,22 +51,19 @@
         </div>
 
         <div class="input-group">
-            <label for="id_casilla">Casilla</label>
+            <label for="id_casilla">Ubicación</label>
             <select class="input-select" name="id_casilla">
                 @foreach ($casillas as $casilla)
-                <option value="{{$casilla->id}}">{{$casilla->id}}</option>
+                <option value="{{$casilla->id}}">Almacén: {{$casilla->almacen}}, 
+                    Estante: {{$casilla->estante}}, Piso: {{$casilla->piso}}, Casilla: {{$casilla->id}}</option>
                 @endforeach
             </select>
         </div>
-
+{{-- 
         <div class="input-group">
-            <label for="id_cliente">Cliente</label>
-            <select class="input-select" name="id_cliente">
-                @foreach ($clientes as $cliente)
-                <option value="{{$cliente->id}}">{{$cliente->nombre}}</option>
-                @endforeach
-            </select>
-        </div>
+            <label for="cliente">Cliente</label>
+            <input type="text" id="cliente" name="cliente" value="{{$cliente['nombre']}}" readonly>
+        </div> --}}
 
         
         <div class="input-group">
@@ -81,6 +78,9 @@
             <input type="checkbox" name="condrefrig" value="1">
         </div>
 
+        @foreach($cliente as $item)
+            <input type="hidden" name="cliente[]" value="{{ $item }}">
+        @endforeach
 
         <button type="submit">Crear</button>
     </form>

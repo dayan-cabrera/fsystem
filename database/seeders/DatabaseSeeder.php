@@ -2,25 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Almacen;
-use App\Models\Carga;
-use App\Models\Casilla;
-use App\Models\Cliente;
-use App\Models\Compania;
-use App\Models\CondAlm;
-use App\Models\Empresa;
-use App\Models\Estante;
-use App\Models\Factura;
-use App\Models\Piso;
-use App\Models\Prioridad;
-use App\Models\Seguridad;
-use App\Models\TipoCompania;
-use App\Models\TipoEmpaquetado;
-use App\Models\TipoProducto;
+
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,7 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Cliente::factory(4)->create();
         $this->call([
             RoleSeeder::class,
             DefaultValuesSeeder::class

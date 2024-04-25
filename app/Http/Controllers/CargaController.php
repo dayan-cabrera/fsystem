@@ -9,6 +9,7 @@ use App\Models\Casilla;
 use App\Models\Cliente;
 use App\Models\Compania;
 use App\Models\Empresa;
+use App\Models\Factura;
 use App\Models\TipoEmpaquetado;
 use Illuminate\Support\Facades\DB;
 
@@ -22,23 +23,31 @@ class CargaController extends Controller
             ->join('tipo_empaquetados', 'cargas.id_empaquetado', '=', 'tipo_empaquetados.id')
             ->join('companias', 'cargas.id_compania', '=', 'companias.id')
             ->join('casillas', 'cargas.id_casilla', '=', 'casillas.id')
+            ->join('pisos', 'casillas.id_piso', '=', 'pisos.id')
+            ->join('estantes', 'pisos.id_estante', '=', 'estantes.id')
+            ->join('almacens', 'estantes.id_almacen', '=', 'almacens.id')
             ->join('clientes', 'cargas.id_cliente', '=', 'clientes.id')
-            ->select('cargas.id', 'cargas.nombre', 'cargas.codigo', 'cargas.fechaexp', 'tipo_productos.tipo as tipo_producto', 'tipo_empaquetados.tipo as empaquetado', 'companias.nombre as compania', 'id_casilla', 'clientes.nombre as cliente', 'cargas.condrefrig', 'cargas.peso')
+            ->select(
+                'cargas.id',
+                'cargas.nombre',
+                'cargas.codigo',
+                'cargas.fechaexp',
+                'tipo_productos.tipo as tipo_producto',
+                'tipo_empaquetados.tipo as empaquetado',
+                'companias.nombre as compania',
+                'almacens.nombre as almacen',
+                'estantes.id as estante',
+                'pisos.id as piso',
+                'cargas.id_casilla',
+                'clientes.nombre as cliente',
+                'cargas.condrefrig',
+                'cargas.peso'
+            )
             ->get();
 
         return view('carga.index', compact('cargas'));
     }
 
-    public function create()
-    {
-        $tipos_productos = TipoProducto::select('id', 'tipo')->get();
-        $tipos_empaquetado = TipoEmpaquetado::select('id', 'tipo')->get();
-        $clientes = Cliente::select('id', 'nombre')->get();
-        $companias = Compania::select('id', 'nombre')->get();
-        $casillas = Casilla::select('id')->get();
-
-        return view('carga.create', compact('tipos_productos', 'tipos_empaquetado', 'clientes', 'companias', 'casillas'));
-    }
 
     public function edit($id)
     {
@@ -63,13 +72,13 @@ class CargaController extends Controller
             'id_empaquetado' => 'required',
             'id_compania' => 'required',
             'id_casilla' => 'required',
-            'id_cliente' => 'required',
             'condrefrig' => 'required',
             'peso' => 'required'
         ]);
-
+        $cliente = $request->cliente;
+        // dd($cliente);
         $empresas = Empresa::select('id', 'nombre')->get();
-        return view('factura.create', compact('data', 'empresas'));
+        return view('factura.create', compact('data', 'empresas', 'cliente'));
     }
 
     public function update(Request $request, $id)
@@ -97,7 +106,15 @@ class CargaController extends Controller
 
     public function destroy($codCarga)
     {
-        Carga::where('id', $codCarga)->delete();
+        $carga = Carga::find($codCarga);
+        $casilla = Casilla::find($carga->id_casilla);
+        $casilla->ocupada = false;
+        $casilla->save();
+        $factura = Factura::where('id_cliente', $carga->id_cliente)->first();
+        $factura->archivado = true;
+        $factura->save();
+        $carga->delete();
+
         return redirect()->route('carga.index')->with('success', 'Carga eliminada correctamente');
     }
 }

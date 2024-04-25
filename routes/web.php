@@ -49,7 +49,6 @@ route::middleware(['auth', 'verified'])->group(function () {
 
     // Rutas referentes a la gestion de cargas
     route::get('/cargas', [CargaController::class, 'index'])->name('carga.index');
-    route::get('/cargas/create', [CargaController::class, 'create'])->name('carga.create');
     route::get('/cargas/create/edit/{id}', [CargaController::class, 'edit'])->name('carga.edit');
     route::post('/cargas/create/store', [CargaController::class, 'store'])->name('carga.store');
     route::put('/cargas/create/update/{id}', [CargaController::class, 'update'])->name('carga.update');
@@ -64,19 +63,15 @@ route::middleware(['auth', 'verified'])->group(function () {
     route::delete('/almacenes/destroy/{id}', [AlmacenController::class, 'destroy'])->name('almacen.destroy');
     route::patch('/almacenes/poner-mantenimiento/{id}', [AlmacenController::class, 'ponerEnMantenimiento'])->name('almacen.p_mant');
     route::patch('/almacenes/quitar-mantenimiento/{id}', [AlmacenController::class, 'quitarDeMantenimiento'])->name('almacen.q_mant');
-    // route::get('/almacenes/mantenimiento', [AlmacenController::class, 'mantIndex'])->name('mant.index');
     route::get('/almacenes/mantenimiento/{id}', [AlmacenController::class, 'mantEdit'])->name('almacen.mant.edit');
 
     // Rutas referentes a la gestion de estantes
     route::get('/almacenes/estantes/{id_alm}', [EstanteController::class, 'index'])->name('estante.index');
     route::get('/almacenes/estantes/create/{id_alm}', [EstanteController::class, 'create'])->name('estante.create');
-    // route::get('/almacenes/estantes/edit/{id}', [EstanteController::class, 'edit'])->name('estante.edit');
     route::post('/almacenes/estantes/store', [EstanteController::class, 'store'])->name('estante.store');
-    // route::put('/almacenes/estantes/update/{id}', [EstanteController::class, 'update'])->name('estante.update');
     route::delete('/almacenes/estantes/destroy/{id}', [EstanteController::class, 'destroy'])->name('estante.destroy');
     route::patch('/almacenes/estantes/poner-mantenimiento/{id}', [EstanteController::class, 'ponerEnMantenimiento'])->name('estante.p_mant');
     route::patch('/almacenes/estantes/quitar-mantenimiento/{id}', [EstanteController::class, 'quitarDeMantenimiento'])->name('estante.q_mant');
-    // route::get('/almacenes/estantes/mantenimiento', [EstanteController::class, 'mantIndex'])->name('estante.mant.index');
     route::get('/almacenes/estantes/mantenimiento/{id}', [EstanteController::class, 'mantEdit'])->name('estante.mant.edit');
 
 
@@ -92,7 +87,6 @@ route::middleware(['auth', 'verified'])->group(function () {
 
     // Rutas referentes a la gestion de casillas
     route::get('/almacenes/casillas/{id_piso}', [CasillaController::class, 'index'])->name('casilla.index');
-    route::get('/almacenes/casillas/cargas/{id_cas}', [CasillaController::class, 'cargas'])->name('casilla.cargas');
     route::get('/almacenes/casillas/create/{id_piso}', [CasillaController::class, 'create'])->name('casilla.create');
     route::post('/almacenes/casillas/store', [CasillaController::class, 'store'])->name('casilla.store');
     route::delete('/almacenes/casillas/destroy/{id}', [CasillaController::class, 'destroy'])->name('casilla.destroy');
@@ -106,14 +100,12 @@ route::middleware(['auth', 'verified'])->group(function () {
     // Rutas referentes a las companias
     route::get('/companias', [CompaniaController::class, 'index'])->name('compania.index');
     route::get('/companias/create', [CompaniaController::class, 'create'])->name('compania.create');
-    // route::get('/companias/show/{id}', [CompaniaController::class, 'show'])->name('compania.show');
     route::get('/companias/create/edit/{id}', [CompaniaController::class, 'edit'])->name('compania.edit');
     route::post('/companias/create/store', [CompaniaController::class, 'store'])->name('compania.store');
     route::put('/companias/create/update/{id}', [CompaniaController::class, 'update'])->name('compania.update');
     route::delete('/companias/destroy/{id}', [CompaniaController::class, 'destroy'])->name('compania.destroy');
 
     // Rutas referentes a la gestion facturas
-    // route::get('/facturas/create', [FacturaController::class, 'create'])->name('factura.create');
     route::get('/facturas', [FacturaController::class, 'index'])->name('factura.index');
     route::post('/facturas/store/', [FacturaController::class, 'store'])->name('factura.store');
     route::patch('/facturas/update/{id}', [FacturaController::class, 'update'])->name('factura.update');

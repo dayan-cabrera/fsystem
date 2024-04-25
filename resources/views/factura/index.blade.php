@@ -1,6 +1,6 @@
 <x-layout>
     <div class="text-center p-4 add">
-        <h1>Gestión de facturaes</h1>
+        <h1>Facturas</h1>
     </div>
     @if (count($facturas) == 0)
     <p>facturas sin registrar</p>
@@ -19,7 +19,8 @@
                     <th scope="col">Fecha Acordada</th>
                     <th scope="col">Fecha Entrada</th>
                     <th scope="col">Fecha Salida</th>
-                    <th scope="col">Acciones</th>
+                    <th scope="col">Archibado</th>
+                    {{-- <th scope="col">Acciones</th> --}}
                 </tr>
             </thead>
             <tbody>
@@ -36,13 +37,15 @@
                     <td class="align-middle">{{ $factura->fecha_acordada }}</td>
                     <td class="align-middle">{{ $factura->fecha_entrada }}</td>
                     <td class="align-middle">{{ $factura->fecha_salida }}</td>
-                    <td class="align-middle">
-                        <form action="{{route('factura.update', $factura->id)}}" method="post">
+                    <td class="align-middle">{{($factura->archivado == 1) ? 'Si' : 'No'}}</td>
+                    
+                    {{-- <td class="align-middle">
+                        <form action="{{route('factura.destroy', $factura->id)}}" method="post">
                             @csrf
-                            @method('patch')
-                            <button type="submit" style="margin: 4px;" class="btn btn-sm btn-info">{{($factura->archivado == 1) ? 'Archibar' : 'Desarchibar'}}</button>
+                            @method('delete')
+                            <button type="submit" style="margin: 4px;" class="btn btn-sm btn-info">Eliminar</button>
                         </form>
-                    </td>
+                    </td> --}}
                 </tr>
                 @endforeach
             </tbody>

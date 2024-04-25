@@ -1,9 +1,6 @@
 <x-layout>
     <div class="text-center p-4 add">
         <h1>Gestión de cargas</h1>
-        <form action="{{route('carga.create')}}" method="get">
-            <button type="submit" class="btn btn-success" style="width: 50%;">Agregar</button>
-        </form>
     </div>
     @if (count($cargas) == 0)
     <p>cargas sin registrar</p>
@@ -20,7 +17,7 @@
                 <th scope="col">Cliente</th>
                 <th scope="col">Compania</th>
                 <th scope="col">Tipo prodoductos</th>
-                <th scope="col">Casilla</th>
+                <th scope="col">Ubicación</th>
                 <th scope="col">Empaquetado</th>
                 <th scope="col">Peso</th>
                 <th scope="col">Fecha expiracion</th>
@@ -37,7 +34,7 @@
                 <td class="align-middle">{{$carga->cliente}}</td>
                 <td class="align-middle">{{$carga->compania}}</td>
                 <td class="align-middle">{{$carga->tipo_producto}}</td>
-                <td class="align-middle">{{$carga->id_casilla}}</td>
+                <td class="align-middle">Almacen: {{$carga->almacen}} Estante: {{$carga->estante}} Piso: {{$carga->piso}} Casilla:{{$carga->id_casilla}}</td>
                 <td class="align-middle">{{$carga->empaquetado}}</td>
                 <td class="align-middle">{{$carga->peso}}</td>
                 <td class="align-middle">{{$carga->fechaexp}}</td>

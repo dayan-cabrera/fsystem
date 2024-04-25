@@ -16,6 +16,7 @@
                     <th scope="col">Código</th>
                     <th scope="col">Piso</th>
                     <th scope="col">Mantenimineto</th>
+                    <th scope="col">Ocupada</th>
                     <th scope="col">Fecha Mantenimiento</th>
                     <th scope="col">Acciones</th>
                 </tr>
@@ -34,13 +35,10 @@
                     <td class="align-middle">{{$casilla->id}}</td>
                     <td class="align-middle">{{$casilla->piso}}</td>
                     <td class="align-middle">{{($casilla->mant == 1) ? "Sí" : "No" }}</td>
+                    <td class="align-middle">{{($casilla->ocupada == 1) ? "Sí" : "No" }}</td>
                     <td class="align-middle">{{$casilla->fecha_mant}}</td>
                     <td id="btns" class="align-middle" style="padding: 1rem;">
                         <div class="d-flex">
-                            <form action="{{route('casilla.cargas', $casilla->id)}}" method="get">
-                                @csrf
-                                <button style="margin: 4px;" class="btn btn-sm btn-info">Cargas</button>
-                            </form>
                             <form action="{{route('casilla.p_mant', $casilla->id)}}" method="post">
                                 @csrf
                                 @method('patch')

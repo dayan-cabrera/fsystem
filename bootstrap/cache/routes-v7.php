@@ -90,7 +90,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::7cxZWYcdztkjrrui',
+            '_route' => 'generated::jXnZrKeHQ6fQ7V84',
           ),
           1 => NULL,
           2 => 
@@ -307,26 +307,6 @@ app('router')->setCompiledRoutes(
           0 => 
           array (
             '_route' => 'carga.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/cargas/create' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'carga.create',
           ),
           1 => NULL,
           2 => 
@@ -598,7 +578,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/users/(?|delete/([^/]++)(*:32)|role/(?|([^/]++)(*:55)|assign/([^/]++)(*:77)))|/c(?|lientes/destroy/([^/]++)(*:115)|argas/(?|create/(?|edit/([^/]++)(*:155)|update/([^/]++)(*:178))|destroy/([^/]++)(*:203))|ompanias/(?|create/(?|edit/([^/]++)(*:247)|update/([^/]++)(*:270))|destroy/([^/]++)(*:295)))|/almacenes/(?|e(?|dit/([^/]++)(*:335)|stantes/(?|([^/]++)(*:362)|create/([^/]++)(*:385)|store(*:398)|destroy/([^/]++)(*:422)|poner\\-mantenimiento/([^/]++)(*:459)|quitar\\-mantenimiento/([^/]++)(*:497)|mantenimiento/([^/]++)(*:527)))|update/([^/]++)(*:552)|destroy/([^/]++)(*:576)|p(?|oner\\-mantenimiento/([^/]++)(*:616)|isos/(?|([^/]++)(*:640)|create/([^/]++)(*:663)|store(*:676)|destroy/([^/]++)(*:700)|poner\\-mantenimiento/([^/]++)(*:737)|quitar\\-mantenimiento/([^/]++)(*:775)|mantenimiento/([^/]++)(*:805)))|quitar\\-mantenimiento/([^/]++)(*:845)|mantenimiento/([^/]++)(*:875)|casillas/(?|([^/]++)(*:903)|c(?|argas/([^/]++)(*:929)|reate/([^/]++)(*:951))|store(*:965)|destroy/([^/]++)(*:989)|poner\\-mantenimiento/([^/]++)(*:1026)|quitar\\-mantenimiento/([^/]++)(*:1065)|mantenimiento/([^/]++)(*:1096)))|/facturas/(?|update/([^/]++)(*:1135)|destroy/([^/]++)(*:1160))|/(.*)(*:1175))/?$}sDu',
+      0 => '{^(?|/users/(?|delete/([^/]++)(*:32)|role/(?|([^/]++)(*:55)|assign/([^/]++)(*:77)))|/c(?|lientes/destroy/([^/]++)(*:115)|argas/(?|create/(?|edit/([^/]++)(*:155)|update/([^/]++)(*:178))|destroy/([^/]++)(*:203))|ompanias/(?|create/(?|edit/([^/]++)(*:247)|update/([^/]++)(*:270))|destroy/([^/]++)(*:295)))|/almacenes/(?|e(?|dit/([^/]++)(*:335)|stantes/(?|([^/]++)(*:362)|create/([^/]++)(*:385)|store(*:398)|destroy/([^/]++)(*:422)|poner\\-mantenimiento/([^/]++)(*:459)|quitar\\-mantenimiento/([^/]++)(*:497)|mantenimiento/([^/]++)(*:527)))|update/([^/]++)(*:552)|destroy/([^/]++)(*:576)|p(?|oner\\-mantenimiento/([^/]++)(*:616)|isos/(?|([^/]++)(*:640)|create/([^/]++)(*:663)|store(*:676)|destroy/([^/]++)(*:700)|poner\\-mantenimiento/([^/]++)(*:737)|quitar\\-mantenimiento/([^/]++)(*:775)|mantenimiento/([^/]++)(*:805)))|quitar\\-mantenimiento/([^/]++)(*:845)|mantenimiento/([^/]++)(*:875)|casillas/(?|([^/]++)(*:903)|create/([^/]++)(*:926)|store(*:939)|destroy/([^/]++)(*:963)|poner\\-mantenimiento/([^/]++)(*:1000)|quitar\\-mantenimiento/([^/]++)(*:1039)|mantenimiento/([^/]++)(*:1070)))|/facturas/(?|update/([^/]++)(*:1109)|destroy/([^/]++)(*:1134))|/(.*)(*:1149))/?$}sDu',
     ),
     3 => 
     array (
@@ -1294,30 +1274,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      929 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'casilla.cargas',
-          ),
-          1 => 
-          array (
-            0 => 'id_cas',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      951 => 
+      926 => 
       array (
         0 => 
         array (
@@ -1340,7 +1297,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      965 => 
+      939 => 
       array (
         0 => 
         array (
@@ -1361,7 +1318,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      989 => 
+      963 => 
       array (
         0 => 
         array (
@@ -1383,7 +1340,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1026 => 
+      1000 => 
       array (
         0 => 
         array (
@@ -1405,7 +1362,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1065 => 
+      1039 => 
       array (
         0 => 
         array (
@@ -1427,7 +1384,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1096 => 
+      1070 => 
       array (
         0 => 
         array (
@@ -1450,7 +1407,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1135 => 
+      1109 => 
       array (
         0 => 
         array (
@@ -1472,7 +1429,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1160 => 
+      1134 => 
       array (
         0 => 
         array (
@@ -1494,13 +1451,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1175 => 
+      1149 => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'generated::qfp6lGTKNdG9UAQ9',
+            '_route' => 'generated::od5XwVYPMm7hfD7k',
           ),
           1 => 
           array (
@@ -1677,7 +1634,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::7cxZWYcdztkjrrui' => 
+    'generated::jXnZrKeHQ6fQ7V84' => 
     array (
       'methods' => 
       array (
@@ -1696,7 +1653,7 @@ app('router')->setCompiledRoutes(
 
                     return \\Illuminate\\Support\\Facades\\View::file(\'/home/dayan-cabrera/Dev/fsystem/facturation-system/vendor/laravel/framework/src/Illuminate/Foundation/Configuration\'.\'/../resources/health-up.blade.php\');
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"00000000000005900000000000000000";}}',
-        'as' => 'generated::7cxZWYcdztkjrrui',
+        'as' => 'generated::jXnZrKeHQ6fQ7V84',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1894,7 +1851,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::qfp6lGTKNdG9UAQ9' => 
+    'generated::od5XwVYPMm7hfD7k' => 
     array (
       'methods' => 
       array (
@@ -1916,7 +1873,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::qfp6lGTKNdG9UAQ9',
+        'as' => 'generated::od5XwVYPMm7hfD7k',
       ),
       'fallback' => true,
       'defaults' => 
@@ -2305,45 +2262,6 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'carga.index',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'carga.create' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'cargas/create',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'auth',
-          2 => 'verified',
-        ),
-        'uses' => 'App\\Http\\Controllers\\CargaController@create',
-        'controller' => 'App\\Http\\Controllers\\CargaController@create',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-        'as' => 'carga.create',
       ),
       'fallback' => false,
       'defaults' => 
@@ -3420,45 +3338,6 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'casilla.index',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'casilla.cargas' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'almacenes/casillas/cargas/{id_cas}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'auth',
-          2 => 'verified',
-        ),
-        'uses' => 'App\\Http\\Controllers\\CasillaController@cargas',
-        'controller' => 'App\\Http\\Controllers\\CasillaController@cargas',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-        'as' => 'casilla.cargas',
       ),
       'fallback' => false,
       'defaults' => 

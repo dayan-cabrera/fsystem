@@ -19,25 +19,11 @@ class CasillaController extends Controller
         // getEstantes
         $casillas = DB::table('casillas')->join('pisos', 'casillas.id_piso', '=', 'pisos.id')
             ->where('casillas.mant', false)->where('id_piso', $id_piso)
-            ->select('casillas.id', 'pisos.id as piso', 'casillas.mant', 'casillas.fecha_mant')
+            ->select('casillas.id', 'pisos.id as piso', 'casillas.mant', 'casillas.fecha_mant', 'casillas.ocupada')
             ->get();
 
 
         return view('casilla.index', compact('casillas', 'id_piso'));
-    }
-
-    public function cargas($id_cas)
-    {
-        $cargas = DB::table('cargas')->where('id_casilla', $id_cas)
-            ->join('tipo_productos', 'cargas.id_tipoprod', '=', 'tipo_productos.id')
-            ->join('tipo_empaquetados', 'cargas.id_empaquetado', '=', 'tipo_empaquetados.id')
-            ->join('companias', 'cargas.id_compania', '=', 'companias.id')
-            ->join('casillas', 'cargas.id_casilla', '=', 'casillas.id')
-            ->join('clientes', 'cargas.id_cliente', '=', 'clientes.id')
-            ->select('cargas.id', 'cargas.nombre', 'cargas.codigo', 'cargas.fechaexp', 'tipo_productos.tipo as tipo_producto', 'tipo_empaquetados.tipo as empaquetado', 'companias.nombre as compania', 'id_casilla', 'clientes.nombre as cliente', 'cargas.condrefrig', 'cargas.peso')
-            ->get();
-
-        return view('casilla.cargas', compact('cargas'));
     }
 
     public function create($id_piso)
