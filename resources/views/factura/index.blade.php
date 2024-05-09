@@ -20,7 +20,7 @@
                     <th scope="col">Fecha Entrada</th>
                     <th scope="col">Fecha Salida</th>
                     <th scope="col">Archibado</th>
-                    {{-- <th scope="col">Acciones</th> --}}
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,13 +39,13 @@
                     <td class="align-middle">{{ $factura->fecha_salida }}</td>
                     <td class="align-middle">{{($factura->archivado == 1) ? 'Si' : 'No'}}</td>
                     
-                    {{-- <td class="align-middle">
-                        <form action="{{route('factura.destroy', $factura->id)}}" method="post">
+                    <td class="align-middle">
+                        <form action="{{route('factura.imprimir', $factura->id)}}" method="get">
                             @csrf
                             @method('delete')
-                            <button type="submit" style="margin: 4px;" class="btn btn-sm btn-info">Eliminar</button>
+                            <button type="submit" style="margin: 4px;" class="btn btn-sm btn-info">Descargar</button>
                         </form>
-                    </td> --}}
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

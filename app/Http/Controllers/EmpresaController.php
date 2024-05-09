@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Empresa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\View;
 use Illuminate\Validation\ValidationException;
 
 class EmpresaController extends Controller
@@ -13,6 +15,15 @@ class EmpresaController extends Controller
         $empresa = Empresa::first();
 
         return view('empresa.index', compact('empresa'));
+    }
+
+    public function imprimir($id)
+    {
+        $empresa = Empresa::find($id);
+        $view = View::make('empresa.pdf', compact('empresa'))->render();
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->download("pdfview.pdf");
     }
 
     public function edit()

@@ -90,7 +90,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::jXnZrKeHQ6fQ7V84',
+            '_route' => 'generated::1iT8zyS92t7Qygwh',
           ),
           1 => NULL,
           2 => 
@@ -578,7 +578,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/users/(?|delete/([^/]++)(*:32)|role/(?|([^/]++)(*:55)|assign/([^/]++)(*:77)))|/c(?|lientes/destroy/([^/]++)(*:115)|argas/(?|create/(?|edit/([^/]++)(*:155)|update/([^/]++)(*:178))|destroy/([^/]++)(*:203))|ompanias/(?|create/(?|edit/([^/]++)(*:247)|update/([^/]++)(*:270))|destroy/([^/]++)(*:295)))|/almacenes/(?|e(?|dit/([^/]++)(*:335)|stantes/(?|([^/]++)(*:362)|create/([^/]++)(*:385)|store(*:398)|destroy/([^/]++)(*:422)|poner\\-mantenimiento/([^/]++)(*:459)|quitar\\-mantenimiento/([^/]++)(*:497)|mantenimiento/([^/]++)(*:527)))|update/([^/]++)(*:552)|destroy/([^/]++)(*:576)|p(?|oner\\-mantenimiento/([^/]++)(*:616)|isos/(?|([^/]++)(*:640)|create/([^/]++)(*:663)|store(*:676)|destroy/([^/]++)(*:700)|poner\\-mantenimiento/([^/]++)(*:737)|quitar\\-mantenimiento/([^/]++)(*:775)|mantenimiento/([^/]++)(*:805)))|quitar\\-mantenimiento/([^/]++)(*:845)|mantenimiento/([^/]++)(*:875)|casillas/(?|([^/]++)(*:903)|create/([^/]++)(*:926)|store(*:939)|destroy/([^/]++)(*:963)|poner\\-mantenimiento/([^/]++)(*:1000)|quitar\\-mantenimiento/([^/]++)(*:1039)|mantenimiento/([^/]++)(*:1070)))|/facturas/(?|update/([^/]++)(*:1109)|destroy/([^/]++)(*:1134))|/(.*)(*:1149))/?$}sDu',
+      0 => '{^(?|/users/(?|delete/([^/]++)(*:32)|role/(?|([^/]++)(*:55)|assign/([^/]++)(*:77)))|/c(?|lientes/destroy/([^/]++)(*:115)|argas/(?|create/(?|edit/([^/]++)(*:155)|update/([^/]++)(*:178))|destroy/([^/]++)(*:203))|ompanias/(?|create/(?|edit/([^/]++)(*:247)|update/([^/]++)(*:270))|destroy/([^/]++)(*:295)))|/almacenes/(?|e(?|dit/([^/]++)(*:335)|stantes/(?|([^/]++)(*:362)|create/([^/]++)(*:385)|store(*:398)|destroy/([^/]++)(*:422)|poner\\-mantenimiento/([^/]++)(*:459)|quitar\\-mantenimiento/([^/]++)(*:497)|mantenimiento/([^/]++)(*:527)))|update/([^/]++)(*:552)|destroy/([^/]++)(*:576)|p(?|oner\\-mantenimiento/([^/]++)(*:616)|isos/(?|([^/]++)(*:640)|create/([^/]++)(*:663)|store(*:676)|destroy/([^/]++)(*:700)|poner\\-mantenimiento/([^/]++)(*:737)|quitar\\-mantenimiento/([^/]++)(*:775)|mantenimiento/([^/]++)(*:805)))|quitar\\-mantenimiento/([^/]++)(*:845)|mantenimiento/([^/]++)(*:875)|casillas/(?|([^/]++)(*:903)|create/([^/]++)(*:926)|store(*:939)|destroy/([^/]++)(*:963)|poner\\-mantenimiento/([^/]++)(*:1000)|quitar\\-mantenimiento/([^/]++)(*:1039)|mantenimiento/([^/]++)(*:1070)))|/facturas/(?|update/([^/]++)(*:1109)|destroy/([^/]++)(*:1134)|imprimir/([^/]++)(*:1160))|/empresa/imprimir/([^/]++)(*:1196)|/(.*)(*:1210))/?$}sDu',
     ),
     3 => 
     array (
@@ -1451,13 +1451,59 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1149 => 
+      1160 => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'generated::od5XwVYPMm7hfD7k',
+            '_route' => 'factura.imprimir',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      1196 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'empresa.imprimir',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      1210 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'generated::pUtxaBXyUpPozBK4',
           ),
           1 => 
           array (
@@ -1634,7 +1680,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::jXnZrKeHQ6fQ7V84' => 
+    'generated::1iT8zyS92t7Qygwh' => 
     array (
       'methods' => 
       array (
@@ -1652,8 +1698,8 @@ app('router')->setCompiledRoutes(
                     \\Illuminate\\Support\\Facades\\Event::dispatch(new \\Illuminate\\Foundation\\Events\\DiagnosingHealth);
 
                     return \\Illuminate\\Support\\Facades\\View::file(\'/home/dayan-cabrera/Dev/fsystem/facturation-system/vendor/laravel/framework/src/Illuminate/Foundation/Configuration\'.\'/../resources/health-up.blade.php\');
-                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"00000000000005900000000000000000";}}',
-        'as' => 'generated::jXnZrKeHQ6fQ7V84',
+                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000059c0000000000000000";}}',
+        'as' => 'generated::1iT8zyS92t7Qygwh',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1851,7 +1897,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::od5XwVYPMm7hfD7k' => 
+    'generated::pUtxaBXyUpPozBK4' => 
     array (
       'methods' => 
       array (
@@ -1867,13 +1913,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:55:"function () {
     return \\redirect()->route(\'login\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005980000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005a40000000000000000";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::od5XwVYPMm7hfD7k',
+        'as' => 'generated::pUtxaBXyUpPozBK4',
       ),
       'fallback' => true,
       'defaults' => 
@@ -1908,7 +1954,7 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:52:"function () {
         return \\view(\'welcome\');
-    }";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"000000000000059c0000000000000000";}}',
+    }";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005a80000000000000000";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
@@ -4006,6 +4052,45 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+    'factura.imprimir' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'facturas/imprimir/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\FacturaController@imprimir',
+        'controller' => 'App\\Http\\Controllers\\FacturaController@imprimir',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'factura.imprimir',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
     'empresa.index' => 
     array (
       'methods' => 
@@ -4107,6 +4192,45 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'empresa.update',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'empresa.imprimir' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'empresa/imprimir/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\EmpresaController@imprimir',
+        'controller' => 'App\\Http\\Controllers\\EmpresaController@imprimir',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'empresa.imprimir',
       ),
       'fallback' => false,
       'defaults' => 

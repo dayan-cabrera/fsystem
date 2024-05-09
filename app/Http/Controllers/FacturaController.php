@@ -10,6 +10,10 @@ use App\Models\Factura;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\View;
+
+use function Laravel\Prompts\select;
 
 class FacturaController extends Controller
 {
@@ -27,6 +31,28 @@ class FacturaController extends Controller
     {
 
         return view('factura.create', compact('carga', 'empresas'));
+    }
+
+    public function imprimir($id)
+    {
+        $factura = DB::table('facturas')
+            ->join('clientes', 'facturas.id_cliente', '=', 'clientes.id')
+            ->where('facturas.id', $id)
+            ->select(
+                'facturas.tarifa_tr',
+                'facturas.tarifa_peso',
+                'facturas.tarifa_tiempo',
+                'facturas.tarifa_refr',
+                'facturas.tarifa_af',
+                'facturas.fecha_acordada',
+                'facturas.fecha_entrada',
+                'facturas.fecha_salida',
+                'clientes.nombre as cliente'
+            )->first();
+        $view = View::make('factura.pdf', compact('factura'))->render();
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->download("pdfview.pdf");
     }
 
     public function store(Request $request)

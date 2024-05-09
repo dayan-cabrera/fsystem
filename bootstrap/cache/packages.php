@@ -6,6 +6,18 @@
       0 => 'Amendozaaguiar\\LaravelLatEs\\LaravelLatEsServiceProvider',
     ),
   ),
+  'barryvdh/laravel-dompdf' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Barryvdh\\DomPDF\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Pdf' => 'Barryvdh\\DomPDF\\Facade\\Pdf',
+      'PDF' => 'Barryvdh\\DomPDF\\Facade\\Pdf',
+    ),
+  ),
   'jeroennoten/laravel-adminlte' => 
   array (
     'providers' => 

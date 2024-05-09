@@ -110,9 +110,13 @@ route::middleware(['auth', 'verified'])->group(function () {
     route::post('/facturas/store/', [FacturaController::class, 'store'])->name('factura.store');
     route::patch('/facturas/update/{id}', [FacturaController::class, 'update'])->name('factura.update');
     route::delete('/facturas/destroy/{id}', [FacturaController::class, 'destroy'])->name('factura.destroy');
+    route::get('/facturas/imprimir/{id}', [FacturaController::class, 'imprimir'])->name('factura.imprimir');
 
-    //Rutas referentes a la gestion facturas
+
+
+    //Rutas referentes a la gestion empresa
     route::get('/empresa', [EmpresaController::class, 'index'])->name('empresa.index');
     route::get('/empresa/edit', [EmpresaController::class, 'edit'])->name('empresa.edit');
     route::put('/empresa/store/', [EmpresaController::class, 'update'])->name('empresa.update');
+    route::get('/empresa/imprimir/{id}', [EmpresaController::class, 'imprimir'])->name('empresa.imprimir');
 });

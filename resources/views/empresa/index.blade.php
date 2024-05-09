@@ -38,10 +38,14 @@
                 </div>
             </div>
 
+            <form action="{{route('empresa.imprimir', $empresa->id)}}" method="get">
+                <button class="btn btn-info mt-5" type="submit" style="width: 100%" href="#">Descargar</button>
+            </form>
+
             @hasrole('Administrador')
             
             <form action="{{route('empresa.edit')}}" method="get">
-                <button class="btn btn-success mt-5 p-2 mb-5" type="submit" style="width: 100%" href="#">Actualizar información</button>
+                <button class="btn btn-success mt-2 p-2 mb-5" type="submit" style="width: 100%" href="#">Actualizar información</button>
             </form>
             @endhasrole
 
