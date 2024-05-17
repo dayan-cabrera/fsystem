@@ -373,6 +373,11 @@ return [
 
             ],
         ],
+        [
+            'text' => 'Email',
+            'url' => '/email',
+            'icon' => 'fas fa-paper-plane',
+        ]
 
 
     ],

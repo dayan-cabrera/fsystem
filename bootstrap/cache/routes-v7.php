@@ -90,7 +90,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::1iT8zyS92t7Qygwh',
+            '_route' => 'generated::1r3Oj5aY5S9FKOWE',
           ),
           1 => NULL,
           2 => 
@@ -214,6 +214,45 @@ app('router')->setCompiledRoutes(
           array (
             'GET' => 0,
             'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/email' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'email.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/enviar-email' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'enviar.email',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
           ),
           3 => NULL,
           4 => false,
@@ -1503,7 +1542,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::pUtxaBXyUpPozBK4',
+            '_route' => 'generated::ifjc8gmGcHR3Uos5',
           ),
           1 => 
           array (
@@ -1680,7 +1719,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::1iT8zyS92t7Qygwh' => 
+    'generated::1r3Oj5aY5S9FKOWE' => 
     array (
       'methods' => 
       array (
@@ -1699,7 +1738,7 @@ app('router')->setCompiledRoutes(
 
                     return \\Illuminate\\Support\\Facades\\View::file(\'/home/dayan-cabrera/Dev/fsystem/facturation-system/vendor/laravel/framework/src/Illuminate/Foundation/Configuration\'.\'/../resources/health-up.blade.php\');
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000059c0000000000000000";}}',
-        'as' => 'generated::1iT8zyS92t7Qygwh',
+        'as' => 'generated::1r3Oj5aY5S9FKOWE',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1897,7 +1936,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::pUtxaBXyUpPozBK4' => 
+    'generated::ifjc8gmGcHR3Uos5' => 
     array (
       'methods' => 
       array (
@@ -1919,7 +1958,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::pUtxaBXyUpPozBK4',
+        'as' => 'generated::ifjc8gmGcHR3Uos5',
       ),
       'fallback' => true,
       'defaults' => 
@@ -1961,6 +2000,83 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'home',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'email.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'email',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\EmailController@index',
+        'controller' => 'App\\Http\\Controllers\\EmailController@index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'email.index',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'enviar.email' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'enviar-email',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\EmailController@send_email',
+        'controller' => 'App\\Http\\Controllers\\EmailController@send_email',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'enviar.email',
       ),
       'fallback' => false,
       'defaults' => 

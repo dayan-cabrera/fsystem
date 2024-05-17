@@ -13,6 +13,10 @@ use App\Http\Controllers\MantenimientoController;
 use App\Http\Controllers\PisoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmailController;
+
+use App\Mail\FSystemMailable;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -33,6 +37,10 @@ route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () {
         return view('welcome');
     })->name('home');
+
+    Route::get('/email', [EmailController::class, 'index'])->name('email.index');
+    Route::post('/enviar-email', [EmailController::class, 'send_email'])->name('enviar.email');
+
 
     // Rutas referentes a la gestion de usuario
     route::get('/users', [UserController::class, 'index'])->name('user.index');
