@@ -90,7 +90,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::1r3Oj5aY5S9FKOWE',
+            '_route' => 'generated::9TV8qyPmTiHwISd3',
           ),
           1 => NULL,
           2 => 
@@ -617,7 +617,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/users/(?|delete/([^/]++)(*:32)|role/(?|([^/]++)(*:55)|assign/([^/]++)(*:77)))|/c(?|lientes/destroy/([^/]++)(*:115)|argas/(?|create/(?|edit/([^/]++)(*:155)|update/([^/]++)(*:178))|destroy/([^/]++)(*:203))|ompanias/(?|create/(?|edit/([^/]++)(*:247)|update/([^/]++)(*:270))|destroy/([^/]++)(*:295)))|/almacenes/(?|e(?|dit/([^/]++)(*:335)|stantes/(?|([^/]++)(*:362)|create/([^/]++)(*:385)|store(*:398)|destroy/([^/]++)(*:422)|poner\\-mantenimiento/([^/]++)(*:459)|quitar\\-mantenimiento/([^/]++)(*:497)|mantenimiento/([^/]++)(*:527)))|update/([^/]++)(*:552)|destroy/([^/]++)(*:576)|p(?|oner\\-mantenimiento/([^/]++)(*:616)|isos/(?|([^/]++)(*:640)|create/([^/]++)(*:663)|store(*:676)|destroy/([^/]++)(*:700)|poner\\-mantenimiento/([^/]++)(*:737)|quitar\\-mantenimiento/([^/]++)(*:775)|mantenimiento/([^/]++)(*:805)))|quitar\\-mantenimiento/([^/]++)(*:845)|mantenimiento/([^/]++)(*:875)|casillas/(?|([^/]++)(*:903)|create/([^/]++)(*:926)|store(*:939)|destroy/([^/]++)(*:963)|poner\\-mantenimiento/([^/]++)(*:1000)|quitar\\-mantenimiento/([^/]++)(*:1039)|mantenimiento/([^/]++)(*:1070)))|/facturas/(?|update/([^/]++)(*:1109)|destroy/([^/]++)(*:1134)|imprimir/([^/]++)(*:1160))|/empresa/imprimir/([^/]++)(*:1196)|/(.*)(*:1210))/?$}sDu',
+      0 => '{^(?|/users/(?|delete/([^/]++)(*:32)|role/(?|([^/]++)(*:55)|assign/([^/]++)(*:77)))|/c(?|lientes/(?|destroy/([^/]++)(*:118)|imprimir/([^/]++)(*:143))|argas/(?|create/(?|edit/([^/]++)(*:184)|update/([^/]++)(*:207))|destroy/([^/]++)(*:232)|imprimir/([^/]++)(*:257))|ompania(?|s/(?|create/(?|edit/([^/]++)(*:304)|update/([^/]++)(*:327))|destroy/([^/]++)(*:352))|/imprimir/([^/]++)(*:379)))|/almacenes/(?|e(?|dit/([^/]++)(*:419)|stantes/(?|([^/]++)(*:446)|create/([^/]++)(*:469)|store(*:482)|destroy/([^/]++)(*:506)|poner\\-mantenimiento/([^/]++)(*:543)|quitar\\-mantenimiento/([^/]++)(*:581)|mantenimiento/([^/]++)(*:611)))|update/([^/]++)(*:636)|destroy/([^/]++)(*:660)|p(?|oner\\-mantenimiento/([^/]++)(*:700)|isos/(?|([^/]++)(*:724)|create/([^/]++)(*:747)|store(*:760)|destroy/([^/]++)(*:784)|poner\\-mantenimiento/([^/]++)(*:821)|quitar\\-mantenimiento/([^/]++)(*:859)|mantenimiento/([^/]++)(*:889)))|quitar\\-mantenimiento/([^/]++)(*:929)|mantenimiento/([^/]++)(*:959)|casillas/(?|([^/]++)(*:987)|create/([^/]++)(*:1010)|store(*:1024)|destroy/([^/]++)(*:1049)|poner\\-mantenimiento/([^/]++)(*:1087)|quitar\\-mantenimiento/([^/]++)(*:1126)|mantenimiento/([^/]++)(*:1157))|imprimir/([^/]++)(*:1184))|/facturas/(?|update/([^/]++)(*:1222)|destroy/([^/]++)(*:1247)|imprimir/([^/]++)(*:1273))|/empresa/imprimir/([^/]++)(*:1309)|/(.*)(*:1323))/?$}sDu',
     ),
     3 => 
     array (
@@ -688,7 +688,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      115 => 
+      118 => 
       array (
         0 => 
         array (
@@ -710,7 +710,30 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      155 => 
+      143 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'cliente.imprimir',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      184 => 
       array (
         0 => 
         array (
@@ -733,7 +756,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      178 => 
+      207 => 
       array (
         0 => 
         array (
@@ -755,7 +778,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      203 => 
+      232 => 
       array (
         0 => 
         array (
@@ -777,7 +800,30 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      247 => 
+      257 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'carga.imprimir',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      304 => 
       array (
         0 => 
         array (
@@ -800,7 +846,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      270 => 
+      327 => 
       array (
         0 => 
         array (
@@ -822,7 +868,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      295 => 
+      352 => 
       array (
         0 => 
         array (
@@ -844,7 +890,30 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      335 => 
+      379 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'compania.imprimir',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      419 => 
       array (
         0 => 
         array (
@@ -867,7 +936,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      362 => 
+      446 => 
       array (
         0 => 
         array (
@@ -890,7 +959,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      385 => 
+      469 => 
       array (
         0 => 
         array (
@@ -913,7 +982,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      398 => 
+      482 => 
       array (
         0 => 
         array (
@@ -934,7 +1003,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      422 => 
+      506 => 
       array (
         0 => 
         array (
@@ -956,7 +1025,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      459 => 
+      543 => 
       array (
         0 => 
         array (
@@ -978,7 +1047,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      497 => 
+      581 => 
       array (
         0 => 
         array (
@@ -1000,7 +1069,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      527 => 
+      611 => 
       array (
         0 => 
         array (
@@ -1023,7 +1092,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      552 => 
+      636 => 
       array (
         0 => 
         array (
@@ -1045,7 +1114,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      576 => 
+      660 => 
       array (
         0 => 
         array (
@@ -1067,7 +1136,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      616 => 
+      700 => 
       array (
         0 => 
         array (
@@ -1089,7 +1158,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      640 => 
+      724 => 
       array (
         0 => 
         array (
@@ -1112,7 +1181,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      663 => 
+      747 => 
       array (
         0 => 
         array (
@@ -1135,7 +1204,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      676 => 
+      760 => 
       array (
         0 => 
         array (
@@ -1156,7 +1225,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      700 => 
+      784 => 
       array (
         0 => 
         array (
@@ -1178,7 +1247,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      737 => 
+      821 => 
       array (
         0 => 
         array (
@@ -1200,7 +1269,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      775 => 
+      859 => 
       array (
         0 => 
         array (
@@ -1222,7 +1291,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      805 => 
+      889 => 
       array (
         0 => 
         array (
@@ -1245,7 +1314,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      845 => 
+      929 => 
       array (
         0 => 
         array (
@@ -1267,7 +1336,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      875 => 
+      959 => 
       array (
         0 => 
         array (
@@ -1290,7 +1359,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      903 => 
+      987 => 
       array (
         0 => 
         array (
@@ -1313,7 +1382,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      926 => 
+      1010 => 
       array (
         0 => 
         array (
@@ -1336,7 +1405,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      939 => 
+      1024 => 
       array (
         0 => 
         array (
@@ -1357,7 +1426,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      963 => 
+      1049 => 
       array (
         0 => 
         array (
@@ -1379,7 +1448,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1000 => 
+      1087 => 
       array (
         0 => 
         array (
@@ -1401,7 +1470,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1039 => 
+      1126 => 
       array (
         0 => 
         array (
@@ -1423,7 +1492,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1070 => 
+      1157 => 
       array (
         0 => 
         array (
@@ -1446,7 +1515,30 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1109 => 
+      1184 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'almacen.imprimir',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      1222 => 
       array (
         0 => 
         array (
@@ -1468,7 +1560,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1134 => 
+      1247 => 
       array (
         0 => 
         array (
@@ -1490,7 +1582,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1160 => 
+      1273 => 
       array (
         0 => 
         array (
@@ -1513,7 +1605,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1196 => 
+      1309 => 
       array (
         0 => 
         array (
@@ -1536,13 +1628,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1210 => 
+      1323 => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'generated::ifjc8gmGcHR3Uos5',
+            '_route' => 'generated::sZNqMsYu0aRXBNox',
           ),
           1 => 
           array (
@@ -1719,7 +1811,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::1r3Oj5aY5S9FKOWE' => 
+    'generated::9TV8qyPmTiHwISd3' => 
     array (
       'methods' => 
       array (
@@ -1738,7 +1830,7 @@ app('router')->setCompiledRoutes(
 
                     return \\Illuminate\\Support\\Facades\\View::file(\'/home/dayan-cabrera/Dev/fsystem/facturation-system/vendor/laravel/framework/src/Illuminate/Foundation/Configuration\'.\'/../resources/health-up.blade.php\');
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000059c0000000000000000";}}',
-        'as' => 'generated::1r3Oj5aY5S9FKOWE',
+        'as' => 'generated::9TV8qyPmTiHwISd3',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1936,7 +2028,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::ifjc8gmGcHR3Uos5' => 
+    'generated::sZNqMsYu0aRXBNox' => 
     array (
       'methods' => 
       array (
@@ -1958,7 +2050,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::ifjc8gmGcHR3Uos5',
+        'as' => 'generated::sZNqMsYu0aRXBNox',
       ),
       'fallback' => true,
       'defaults' => 
@@ -4347,6 +4439,162 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'empresa.imprimir',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'compania.imprimir' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'compania/imprimir/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\CompaniaController@imprimir',
+        'controller' => 'App\\Http\\Controllers\\CompaniaController@imprimir',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'compania.imprimir',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'cliente.imprimir' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'clientes/imprimir/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ClienteController@imprimir',
+        'controller' => 'App\\Http\\Controllers\\ClienteController@imprimir',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'cliente.imprimir',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'almacen.imprimir' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'almacenes/imprimir/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\AlmacenController@imprimir',
+        'controller' => 'App\\Http\\Controllers\\AlmacenController@imprimir',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'almacen.imprimir',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'carga.imprimir' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'cargas/imprimir/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\CargaController@imprimir',
+        'controller' => 'App\\Http\\Controllers\\CargaController@imprimir',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'carga.imprimir',
       ),
       'fallback' => false,
       'defaults' => 

@@ -7,7 +7,9 @@ use App\Models\Compania;
 use App\Models\TipoEmpaquetado;
 use App\Models\TipoProducto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 
 class ClienteController extends Controller
 {
@@ -16,6 +18,14 @@ class ClienteController extends Controller
         // getCliente
         $clientes = Cliente::orderBy('nombre')->get();
         return view('cliente.index', compact('clientes'));
+    }
+    public function imprimir($id)
+    {
+        $cliente = Cliente::find($id);
+        $view = View::make('cliente.pdf', compact('cliente'))->render();
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->download($cliente->nombre . ".pdf");
     }
 
     public function create()

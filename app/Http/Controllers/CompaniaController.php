@@ -9,7 +9,9 @@ use App\Models\Prioridad;
 use App\Models\Seguridad;
 use App\Models\TipoCompania;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use Illuminate\Validation\ValidationException;
 
 class CompaniaController extends Controller
@@ -35,12 +37,14 @@ class CompaniaController extends Controller
         return view('compania.index', compact('companias'));
     }
 
-    // public function show($id)
-    // {
-    //     // selectComp
-    //     $compania = Compania::findOrFail($id);
-    //     return view('compania.select', compact('compania'));
-    // }
+    public function imprimir($id)
+    {
+        $compania = Compania::find($id);
+        $view = View::make('compania.pdf', compact('compania'))->render();
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->download($compania->nombre . ".pdf");
+    }
 
     public function create()
     {

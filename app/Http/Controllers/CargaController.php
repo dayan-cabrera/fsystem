@@ -11,7 +11,9 @@ use App\Models\Compania;
 use App\Models\Empresa;
 use App\Models\Factura;
 use App\Models\TipoEmpaquetado;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 
 class CargaController extends Controller
 {
@@ -46,6 +48,15 @@ class CargaController extends Controller
             ->get();
 
         return view('carga.index', compact('cargas'));
+    }
+
+    public function imprimir($id)
+    {
+        $carga = Carga::find($id);
+        $view = View::make('carga.pdf', compact('carga'))->render();
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->download($carga->nombre . ".pdf");
     }
 
 

@@ -10,7 +10,9 @@ use App\Models\Estante;
 use App\Models\Piso;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use JeroenNoten\LaravelAdminLte\View\Components\Widget\Card;
 
 class AlmacenController extends Controller
@@ -26,6 +28,14 @@ class AlmacenController extends Controller
             ->get();
 
         return view('almacen.index', compact('almacenes'));
+    }
+    public function imprimir($id)
+    {
+        $almacen = Almacen::find($id);
+        $view = View::make('almacen.pdf', compact('almacen'))->render();
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->download($almacen->nombre . ".pdf");
     }
 
     public function create()

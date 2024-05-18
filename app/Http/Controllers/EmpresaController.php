@@ -23,7 +23,7 @@ class EmpresaController extends Controller
         $view = View::make('empresa.pdf', compact('empresa'))->render();
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
-        return $pdf->download("pdfview.pdf");
+        return $pdf->download($empresa->nombre . ".pdf");
     }
 
     public function edit()

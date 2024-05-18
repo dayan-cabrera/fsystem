@@ -127,4 +127,11 @@ route::middleware(['auth', 'verified'])->group(function () {
     route::get('/empresa/edit', [EmpresaController::class, 'edit'])->name('empresa.edit');
     route::put('/empresa/store/', [EmpresaController::class, 'update'])->name('empresa.update');
     route::get('/empresa/imprimir/{id}', [EmpresaController::class, 'imprimir'])->name('empresa.imprimir');
+
+
+    // rutas referentes a descargar pdf
+    route::get('/compania/imprimir/{id}', [CompaniaController::class, 'imprimir'])->name('compania.imprimir');
+    route::get('/clientes/imprimir/{id}', [ClienteController::class, 'imprimir'])->name('cliente.imprimir');
+    route::get('/almacenes/imprimir/{id}', [AlmacenController::class, 'imprimir'])->name('almacen.imprimir');
+    route::get('/cargas/imprimir/{id}', [CargaController::class, 'imprimir'])->name('carga.imprimir');
 });
